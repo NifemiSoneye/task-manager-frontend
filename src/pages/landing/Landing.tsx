@@ -5,7 +5,7 @@ import Footer from "./Footer";
 const Landing = () => {
   return (
     <div className="min-h-screen bg-[#0B1628]  pb-10">
-      <div className="px-4">
+      <div className="px-4 animate-collapsible-up">
         <section className="bg-[#0B1628] flex justify-between items-center p-3">
           <p className="text-white  text-2xl font-['Playfair_Display_Variable'] ">
             <span className="text-[#C9A84C] ">Task</span>
@@ -22,11 +22,11 @@ const Landing = () => {
         </section>
         <hr />
         <div className="flex justify-evenly items-center text-[#C9A84C] p-2 border border-[rgb(93,80,49)] bg-[rgba(201,168,76,0.1)] max-w-[70%] mx-3 my-5 rounded-4xl text-[0.75rem] shadow-[0_0_40px_rgba(201,168,76,0.15)]">
-          <div className="w-2 h-2 border rounded-[50%] bg-[#f59e0b] animate-pulse"></div>
+          <div className="w-2 h-2  rounded-[50%] bg-[#f59e0b] animate-pulse"></div>
           <p className=" text-xs">REAL-TIME TASK MANAGEMENT</p>
         </div>
 
-        <h1 className="text-[2rem]  pr-10 text-white font-['Playfair_Display_Variable']">
+        <h1 className="text-[2rem]  pr-10 text-white font-['Playfair_Display_Variable'] font-semibold">
           Work flows when tasks are{" "}
           <span className="italic text-[#C9A84C] font-semibold">
             organised.
@@ -64,16 +64,16 @@ const Landing = () => {
               Product Roadmap
             </p>
             <div className="flex gap-1">
-              <div className="w-2 h-2 border rounded-[50%] bg-[#ef4444]"></div>
-              <div className="w-2 h-2 border rounded-[50%] bg-[#f59e0b]"></div>
-              <div className="w-2 h-2 border rounded-[50%] bg-[#22c55e]"></div>
+              <div className="w-2 h-2 rounded-[50%] bg-[#ef4444]"></div>
+              <div className="w-2 h-2  rounded-[50%]  bg-[#f59e0b]"></div>
+              <div className="w-2 h-2  rounded-[50%] bg-[#22c55e] "></div>
             </div>
           </section>
           <hr />
           <section className="grid grid-cols-3 gap-3">
             <div className="bg-[#1E3160] my-4 text-[0.6rem] py-2 rounded-md">
               <div className="flex items-center justify-around pb-1">
-                <div className="w-2 h-2 border rounded-[50%] bg-[#6b7280]"></div>
+                <div className="w-2 h-2  rounded-[50%] bg-[#6b7280]"></div>
                 <p className="text-white ] ">Todo</p>
               </div>
               <div className="bg-[#0B1628] mx-2 border border-transparent rounded-sm p-2">
@@ -94,7 +94,7 @@ const Landing = () => {
             </div>
             <div className="bg-[#1E3160] my-4 text-[0.6rem] py-2 rounded-md">
               <div className="flex items-center justify-evenly pb-1">
-                <div className="w-2 h-2 border rounded-[50%] bg-[#f59e0b]"></div>
+                <div className="w-2 h-2  rounded-[50%] bg-[#f59e0b]"></div>
                 <p className="text-white  text-nowrap ">IN PROGRESS</p>
               </div>
               <div className="bg-[#0B1628] mx-2 border border-transparent rounded-sm p-2">
@@ -115,7 +115,7 @@ const Landing = () => {
             </div>
             <div className="bg-[#1E3160] my-4 text-[0.6rem] py-2 rounded-md">
               <div className="flex items-center justify-evenly pb-1">
-                <div className="w-2 h-2 border rounded-[50%] bg-[#22c55e] "></div>
+                <div className="w-2 h-2  rounded-[50%] bg-[#22c55e] "></div>
                 <p className="text-white">Done</p>
               </div>
               <div className="bg-[#0B1628] mx-2 border border-transparent rounded-sm p-2">
