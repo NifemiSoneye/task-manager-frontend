@@ -2,58 +2,57 @@ import { Button } from "@/components/ui/button";
 import InfoStats from "./InfoStats";
 import AppFeatures from "./AppFeatures";
 import Footer from "./Footer";
+import Nav from "@/components/common/Nav";
+import { useNavigate } from "react-router-dom";
 const Landing = () => {
+  const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-[#0B1628]  pb-10">
-      <div className="px-4 animate-collapsible-up">
-        <section className="bg-[#0B1628] flex justify-between items-center p-3">
-          <p className="text-white  text-2xl font-['Playfair_Display_Variable'] ">
-            <span className="text-[#C9A84C] ">Task</span>
-            Flow
-          </p>
-          <Button
-            type="button"
-            variant="default"
-            title="Get started"
-            className="bg-[#C9A84C] text-black"
-          >
-            Get started
-          </Button>
-        </section>
-        <hr />
-        <div className="md:grid grid-cols-2 min-h-[95vh] gap-20 items-center">
-          <section className=" md:mx-20">
-            <div className="flex justify-evenly  items-center text-[#C9A84C] p-2 md:p-1 border border-[rgb(93,80,49)] bg-[rgba(201,168,76,0.1)] max-w-[70%] md:max-w-[50%] mx-3 my-5 md:mb-7 rounded-4xl text-[0.75rem] shadow-[0_0_40px_rgba(201,168,76,0.15)]">
+    <div className="min-h-screen bg-[#0B1628]  pb-5">
+      <Nav />
+      <div className=" animate-collapsible-up max-w-7xl mx-auto lg:pt-[10vh] pt-[5vh]">
+        <div className="lg:grid grid-cols-2 lg:gap-16 lg:items-center py-1 lg:pb-28 lg:pt-10 lg:px-20 px-4">
+          <section className=" py-2 lg:py-0">
+            <div
+              className="flex justify-evenly md:justify-around  
+            items-center text-[#C9A84C] p-2 md:p-1 border border-[rgb(93,80,49)] bg-[rgba(201,168,76,0.1)] max-w-[70%]  mx-3 my-5 md:mb-7 rounded-4xl text-[0.75rem] shadow-[0_0_40px_rgba(201,168,76,0.15)] md:max-w-[50%] md:mx-0"
+            >
               <div className="w-2 h-2  rounded-[50%] bg-[#f59e0b] animate-pulse"></div>
               <p className=" text-xs">REAL-TIME TASK MANAGEMENT</p>
             </div>
-
-            <h1 className="text-[2rem]  pr-10 text-white font-['Playfair_Display_Variable'] font-semibold md:text-[4vw]   md:leading-[1.2]  md:tracking-[-0.01em] md:mb-6 md:font-bold">
+            <h1 className="text-[2rem]  pr-10 text-white font-['Playfair_Display_Variable'] font-semibold lg:text-[4vw] md:text-[3.5rem]   md:leading-[1.2]  md:tracking-[-0.01em] md:mb-6 md:font-bold hidden lg:block">
+              Work flows when tasks are <br />
+              <span className="italic text-[#C9A84C] font-semibold">
+                organised.
+              </span>
+            </h1>
+            <h1 className="text-[2rem]  pr-10 text-white font-['Playfair_Display_Variable'] font-semibold lg:text-[4vw] md:text-[3.5rem]   md:leading-[1.2]  md:tracking-[-0.01em] md:mb-6 md:font-bold lg:hidden">
               Work flows when tasks are{" "}
               <span className="italic text-[#C9A84C] font-semibold">
                 organised.
               </span>
             </h1>
-            <p className="text-[#8A93A8] text-sm">
+            <p className="text-[#8A93A8] text-sm md:text-[0.9rem]">
               A clean, focused kanban board that keeps your work moving. Create
               tasks, set priorities, track progress - all in one place
             </p>
-            <div className="flex flex-col gap-4 mt-7 md:flex-row mb-3">
+            <div className="flex flex-col sm:flex-row gap-4 mt-7 mb-3">
               <Button
                 type="button"
                 variant="link"
-                title="Reset"
-                className="bg-[#C9A84C] text-black rounded-sm p-6"
+                title="Start for free"
+                className="bg-[#C9A84C] text-black rounded-sm p-6 w-full sm:w-auto sm:min-w-[10vw] hover:no-underline hover:cursor-pointer"
+                onClick={() => navigate("/register")}
               >
                 Start for free
               </Button>
               <Button
                 type="button"
                 variant="default"
-                title="Reset"
-                className="bg-transparent text-white rounded-sm p-6 border border-[#E2C47A] "
+                title="Login"
+                className="bg-transparent text-white rounded-sm p-6 border border-[#E2C47A] w-full sm:w-auto sm:min-w-[10vw] hover:cursor-pointer"
+                onClick={() => navigate("/login")}
               >
-                See how it works
+                Login
               </Button>
             </div>
             <p className=" text-[#8A93A8] text-xs">
@@ -61,7 +60,7 @@ const Landing = () => {
               No credit card required. Free to use.
             </p>
           </section>
-          <section className="bg-[#132040] px-7 py-5 my-8 shadow-[0_40px_80px_rgba(0,0,0,0.5)] border border-transparent rounded-md md:mx-20">
+          <section className="bg-[#132040] px-7 py-5 my-8 shadow-[0_40px_80px_rgba(0,0,0,0.5)] border border-transparent rounded-md md:max-h-[60vh] lg:max-h-none overflow-hidden">
             <section className="flex justify-between items-center pb-2">
               <p className="text-white text-[0.7rem] font-['Playfair_Display_Variable']">
                 Product Roadmap
