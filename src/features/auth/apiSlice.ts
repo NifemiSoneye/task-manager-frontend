@@ -1,17 +1,17 @@
 import { fetchBaseQuery, createApi } from "@reduxjs/toolkit/query/react";
 import type { RootState } from "@/app/store";
-/* import type {
+import type {
   BaseQueryFn,
   FetchArgs,
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query";
 import { setCredentials } from "../../features/auth/authSlice";
-import { logOut } from "../../features/auth/authSlice"; */
+import { logOut } from "../../features/auth/authSlice";
 
-/* type RefreshResult = {
+type RefreshResult = {
   accessToken: string;
 };
- */
+
 const baseQuery = fetchBaseQuery({
   baseUrl: "http://localhost:3500",
   credentials: "include",
@@ -25,7 +25,7 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-/* const baseQueryWithReauth: BaseQueryFn<
+const baseQueryWithReauth: BaseQueryFn<
   FetchArgs | string,
   unknown,
   FetchBaseQueryError
@@ -62,9 +62,9 @@ const baseQuery = fetchBaseQuery({
   }
 
   return result;
-}; */
+};
 export const apiSlice = createApi({
-  baseQuery,
-  tagTypes: ["Boards", "Tasks"],
+  baseQuery: baseQueryWithReauth,
+  tagTypes: ["Board", "Task"],
   endpoints: (builder) => ({}),
 });
