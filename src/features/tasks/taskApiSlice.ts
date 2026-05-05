@@ -3,7 +3,7 @@ import { apiSlice } from "../auth/apiSlice";
 import { type Task } from "@/lib/types";
 import { type RootState } from "../../app/store";
 
-const tasksAdapter = createEntityAdapter<Task>({});
+const tasksAdapter = createEntityAdapter<Task>();
 
 const initialState = tasksAdapter.getInitialState();
 
@@ -16,12 +16,24 @@ export const tasksApiSlice = apiSlice.injectEndpoints({
           return response.status === 200 && !result.isError;
         },
       }),
-      transformResponse: (responseData) => {
-        const loadedTasks = responseData.map((task: Task) => {
+      transformResponse: (responseData: {
+        tasks: Task[];
+        taskCount: number;
+        tasksDone: number;
+        inProgress: number;
+        toDo: number;
+      }) => {
+        const loadedTasks = responseData.tasks.map((task: Task) => {
           task.id = task._id;
           return task;
         });
-        return tasksAdapter.setAll(initialState, loadedTasks);
+        return {
+          ...tasksAdapter.setAll(initialState, loadedTasks),
+          taskCount: responseData.taskCount,
+          tasksDone: responseData.tasksDone,
+          inProgress: responseData.inProgress,
+          toDo: responseData.toDo,
+        };
       },
       providesTags: (result, error, arg) => {
         if (result?.ids) {
