@@ -44,7 +44,7 @@ const DashBoard = () => {
   if (analyticsLoading) return <p>Loading...</p>;
   return (
     <div className="p-5">
-      <section className=" grid grid-cols-2 gap-2 mb-3">
+      <section className=" grid grid-cols-2 gap-2 mb-3 lg:grid-cols-4">
         <div className="bg-[#132040] p-4 rounded-md">
           <div className="text-[1.1rem] mb-3">📁</div>
           <div className="text-white text-[1.5rem]">
@@ -78,26 +78,27 @@ const DashBoard = () => {
           </p>
         </div>
       </section>
-      <h2 className="text-white mb-5">All Boards</h2>
-      <section className="grid grid-cols-1 gap-3">
+      <h2 className="text-white my-5 ">All Boards</h2>
+      <section className="grid grid-cols-1 gap-3 lg:grid-cols-4">
         {allBoards.map((board, index) => (
           <BoardsList key={board.id} board={board} index={index} />
         ))}
-      </section>
-      <div className="bg-transparent border border-dashed border-[#C9A84C]  rounded-md flex items-center justify-center min-h-45 flex-col my-4">
-        <div className="bg-[#23252b] h-11 w-11 rounded-full flex items-center justify-center text-xl">
-          <Button
-            type="button"
-            variant="default"
-            title="Create new board"
-            onClick={() => setIsOpen(true)}
-            className="bg-transparent cursor-pointer"
-          >
-            ➕
-          </Button>
+
+        <div className="bg-transparent border border-dashed border-[#C9A84C]  rounded-md flex items-center justify-center  flex-col min-h-55">
+          <div className="bg-[#23252b] h-11 w-11 rounded-full flex items-center justify-center text-xl">
+            <Button
+              type="button"
+              variant="default"
+              title="Create new board"
+              onClick={() => setIsOpen(true)}
+              className="bg-transparent cursor-pointer"
+            >
+              ➕
+            </Button>
+          </div>
+          <p className="text-[#8A93A8] text-sm">Create new board</p>
         </div>
-        <p className="text-[#8A93A8] text-sm">Create new board</p>
-      </div>
+      </section>
 
       {isOpen && (
         <>

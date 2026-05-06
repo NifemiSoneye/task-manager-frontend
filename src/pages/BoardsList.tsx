@@ -6,17 +6,25 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useDeleteBoardMutation } from "@/features/boards/boardApiSlice";
 type Props = {
   board: Board;
   index: number;
 };
 
+import { LoaderCircle } from "lucide-react";
 const BoardsList = ({ board, index }: Props) => {
   const { data } = useGetTasksByBoardQuery(board.id);
   const toDoArray = Array(data?.toDo ?? 0).fill(null);
   const inProgressArray = Array(data?.inProgress ?? 0).fill(null);
   const doneArray = Array(data?.tasksDone ?? 0).fill(null);
 
+  const [deleteBoard, { isLoading: isDeleteLoading }] =
+    useDeleteBoardMutation();
+
+  const handleDelete = async () => {
+    await deleteBoard({ id: board.id });
+  };
   const getTimeAgo = (dateString: string) => {
     const now = new Date();
     const past = new Date(dateString);
@@ -61,7 +69,7 @@ const BoardsList = ({ board, index }: Props) => {
     boardGradients[index % boardGradients.length];
   return (
     <section>
-      <div className="bg-[#132040]  rounded-md hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] transition-shadow duration-300  group">
+      <div className="bg-[#132040]  rounded-md hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] transition-shadow duration-300  group min-h-55">
         <div
           className="h-16 rounded-t-md flex items-end p-3 mb-3 relative justify-between"
           style={{ background: getGradient(index) }}
@@ -77,10 +85,18 @@ const BoardsList = ({ board, index }: Props) => {
               className="bg-[#132040] border-white/10"
             >
               <DropdownMenuItem
-                className="text-red-400 hover:text-red-300 cursor-pointer"
-                /* onClick={() => handleDelete(board.id)} */
+                onSelect={(e) => {
+                  // This stops the dropdown from closing
+                  e.preventDefault();
+                }}
+                className="text-red-400 hover:text-red-300 cursor-pointer flex items-center "
+                onClick={handleDelete}
               >
-                🗑 Delete board
+                {isDeleteLoading ? (
+                  <LoaderCircle className="animate-spin" />
+                ) : (
+                  "🗑 Delete board"
+                )}
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>

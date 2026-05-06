@@ -6,6 +6,7 @@ interface DecodedToken {
   UserInfo: {
     id: string;
     email: string;
+    username: string;
   };
 }
 
@@ -14,8 +15,8 @@ const useAuth = () => {
 
   if (token) {
     const decoded = jwtDecode<DecodedToken>(token);
-    const { id, email } = decoded.UserInfo;
-    return { id, email, token };
+    const { id, email, username } = decoded.UserInfo;
+    return { id, email, username, token };
   }
 
   return { id: null, email: null, token: null };

@@ -4,7 +4,7 @@ import SideBar from "./SideBar";
 
 const DashBoardLayout = () => {
   return (
-    <div className="flex min-h-screen bg-[#0B1628]  pb-5">
+    <div className="flex min-h-screen bg-[#0B1628]">
       <SideBar />
       <div className="flex-1">
         <DashNav />
