@@ -1,5 +1,11 @@
 import { type Board } from "@/lib/types";
 import { useGetTasksByBoardQuery } from "@/features/tasks/taskApiSlice";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 type Props = {
   board: Board;
   index: number;
@@ -55,12 +61,29 @@ const BoardsList = ({ board, index }: Props) => {
     boardGradients[index % boardGradients.length];
   return (
     <section>
-      <div className="bg-[#132040]  rounded-md">
+      <div className="bg-[#132040]  rounded-md hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] transition-shadow duration-300  group">
         <div
-          className="h-16 rounded-t-md flex items-end p-3 mb-3"
+          className="h-16 rounded-t-md flex items-end p-3 mb-3 relative justify-between"
           style={{ background: getGradient(index) }}
         >
           <p className="text-white font-semibold">{board.title}</p>
+
+          <DropdownMenu>
+            <DropdownMenuTrigger className=" top-2 right-2 text-white/60 hover:text-white px-1 lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-200">
+              ⋯
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              className="bg-[#132040] border-white/10"
+            >
+              <DropdownMenuItem
+                className="text-red-400 hover:text-red-300 cursor-pointer"
+                /* onClick={() => handleDelete(board.id)} */
+              >
+                🗑 Delete board
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
         <section className="grid grid-cols-3 gap-2 border-b border-b-[#292c33] pb-4 p-4">
           <div>
