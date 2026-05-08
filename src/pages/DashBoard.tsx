@@ -1,5 +1,4 @@
 import { useGetAnalyticsQuery } from "@/features/analytics/analyticsApiSlice";
-import { useGetBoardQuery } from "@/features/boards/boardApiSlice";
 import { useGetAllBoardsQuery } from "@/features/boards/boardApiSlice";
 import { useSelector } from "react-redux";
 import { selectAllBoards } from "@/features/boards/boardApiSlice";
@@ -41,7 +40,15 @@ const DashBoard = () => {
       errRef?.current?.focus();
     }
   };
-  if (analyticsLoading) return <p>Loading...</p>;
+  if (analyticsLoading || isLoading)
+    return (
+      <div className="fixed inset-0 z-50 bg-[#0B1628]">
+        <div className="w-full h-dvh grid place-content-center">
+          <LoaderCircle className="h-48 w-48 animate-spin text-white" />
+        </div>
+      </div>
+    );
+
   return (
     <div className="p-5">
       <section className=" grid grid-cols-2 gap-2 mb-3 lg:grid-cols-4">

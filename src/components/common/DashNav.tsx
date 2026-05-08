@@ -7,9 +7,10 @@ import {
   toggleSidebar,
   closeSidebar,
 } from "@/features/ui/uiSlice";
+import useAuth from "@/hooks/useAuth";
 const DashNav = () => {
   const isOpen = useSelector(selectSidebarOpen);
-
+  const { username } = useAuth();
   // dispatch actions
   const dispatch = useDispatch();
 
@@ -35,7 +36,12 @@ const DashNav = () => {
             className="lg:hidden cursor-pointer h-4 w-4"
           />
         </Button>
-        <p className="text-white">My Boards</p>
+        <div>
+          <p className="text-white">My Boards</p>
+          <p className="text-[0.8rem] mt-[0.15rem] text-[#8A93A8] hidden lg:block">
+            Welcome back, {username}
+          </p>
+        </div>
       </div>
       <Button
         type="button"
