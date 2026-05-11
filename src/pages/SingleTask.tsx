@@ -2,11 +2,15 @@ import { type Task } from "@/lib/types";
 import formatDueDate from "@/lib/formatDate";
 interface SingleTaskProps {
   task: Task;
+  onSelect: (task: Task) => void;
 }
 
-const SingleTask = ({ task }: SingleTaskProps) => {
+const SingleTask = ({ task, onSelect }: SingleTaskProps) => {
   return (
-    <div className="bg-[#132040] rounded-md p-3 mx-3 border border-[#FFFFFF12]">
+    <div
+      className="bg-[#132040] rounded-md p-3 mx-3 border border-[#FFFFFF12]"
+      onClick={() => onSelect(task)}
+    >
       <p className="text-white text-[0.855rem] font-semibold mb-[0.55rem]">
         {task.title}
       </p>

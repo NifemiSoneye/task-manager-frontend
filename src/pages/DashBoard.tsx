@@ -22,6 +22,7 @@ const DashBoard = () => {
   const allBoards = useSelector(selectAllBoards);
   const search = useSelector(selectSearch);
   const errRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     setErrMsg("");
   }, [boardName]);
