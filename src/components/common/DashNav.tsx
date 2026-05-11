@@ -2,12 +2,9 @@ import { Button } from "../ui/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  selectSidebarOpen,
-  toggleSidebar,
-  closeSidebar,
-} from "@/features/ui/uiSlice";
+import { selectSidebarOpen, toggleSidebar } from "@/features/ui/uiSlice";
 import useAuth from "@/hooks/useAuth";
+import SearchBar from "./SearchBar";
 const DashNav = () => {
   const isOpen = useSelector(selectSidebarOpen);
   const { username } = useAuth();
@@ -17,7 +14,6 @@ const DashNav = () => {
   const openSideBar = () => {
     dispatch(toggleSidebar());
   };
-
   const menuIcon = new URL("../../assets/icon-hamburger.svg", import.meta.url)
     .href;
   return (
@@ -43,14 +39,20 @@ const DashNav = () => {
           </p>
         </div>
       </div>
-      <Button
-        type="button"
-        variant="default"
-        title="Sidebar"
-        className="bg-transparent"
-      >
-        <FontAwesomeIcon icon={faRightFromBracket} className="h-4 w-4" />
-      </Button>
+      <div className="flex items-center mr-6">
+        <div className="hidden lg:block">
+          <SearchBar />
+        </div>
+
+        <Button
+          type="button"
+          variant="default"
+          title="Sidebar"
+          className="bg-[#C9A84C] text-black lg:m-3 lg:p-5 rounded-sm "
+        >
+          <FontAwesomeIcon icon={faRightFromBracket} />
+        </Button>
+      </div>
     </div>
   );
 };

@@ -14,7 +14,7 @@ export interface Task {
   description?: string;
   priority: "low" | "medium" | "high";
   dueDate?: string;
-  status: "todo" | "in-progress" | "done";
+  status: "todo" | "inprogress" | "done";
   order: number;
   board: string;
   createdAt?: string;

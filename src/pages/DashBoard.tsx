@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useCreateBoardMutation } from "@/features/boards/boardApiSlice";
 import { LoaderCircle } from "lucide-react";
+import { selectSearch } from "@/features/ui/searchSlice";
+import SearchBar from "@/components/common/SearchBar";
 const DashBoard = () => {
   const [createBoard, { isLoading: isBoardLoading }] = useCreateBoardMutation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -18,6 +20,7 @@ const DashBoard = () => {
     useGetAnalyticsQuery(undefined);
   const { isLoading, isError } = useGetAllBoardsQuery(undefined);
   const allBoards = useSelector(selectAllBoards);
+  const search = useSelector(selectSearch);
   const errRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     setErrMsg("");
@@ -40,6 +43,10 @@ const DashBoard = () => {
       errRef?.current?.focus();
     }
   };
+  const searchResults =
+    allBoards?.filter((board) =>
+      board.title.toLowerCase().includes(search.toLowerCase()),
+    ) ?? [];
   if (analyticsLoading || isLoading)
     return (
       <div className="fixed inset-0 z-50 bg-[#0B1628]">
@@ -85,26 +92,37 @@ const DashBoard = () => {
           </p>
         </div>
       </section>
-      <h2 className="text-white my-5 ">All Boards</h2>
-      <section className="grid grid-cols-1 gap-3 lg:grid-cols-4">
-        {allBoards.map((board, index) => (
-          <BoardsList key={board.id} board={board} index={index} />
-        ))}
-
-        <div className="bg-transparent border border-dashed border-[#C9A84C]  rounded-md flex items-center justify-center  flex-col min-h-55">
-          <div className="bg-[#23252b] h-11 w-11 rounded-full flex items-center justify-center text-xl">
-            <Button
-              type="button"
-              variant="default"
-              title="Create new board"
-              onClick={() => setIsOpen(true)}
-              className="bg-transparent cursor-pointer"
-            >
-              ➕
-            </Button>
-          </div>
-          <p className="text-[#8A93A8] text-sm">Create new board</p>
+      <div className="flex justify-between items-center">
+        <h2 className="text-white my-5 ">All Boards</h2>
+        <div className="lg:hidden">
+          <SearchBar />
         </div>
+      </div>
+
+      <section className="grid grid-cols-1 gap-3 lg:grid-cols-4">
+        {searchResults.length > 0 ? (
+          searchResults.map((board, index) => (
+            <BoardsList key={board.id} board={board} index={index} />
+          ))
+        ) : (
+          <p className="text-white my-5">No board found</p>
+        )}
+        {search ? null : (
+          <div className="bg-transparent border border-dashed border-[#C9A84C]  rounded-md flex items-center justify-center  flex-col min-h-55">
+            <div className="bg-[#23252b] h-11 w-11 rounded-full flex items-center justify-center text-xl">
+              <Button
+                type="button"
+                variant="default"
+                title="Create new board"
+                onClick={() => setIsOpen(true)}
+                className="bg-transparent cursor-pointer"
+              >
+                ➕
+              </Button>
+            </div>
+            <p className="text-[#8A93A8] text-sm">Create new board</p>
+          </div>
+        )}
       </section>
 
       {isOpen && (
