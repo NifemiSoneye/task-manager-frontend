@@ -32,7 +32,11 @@ const TaskView = ({ data, status }: TaskViewProps) => {
               <p>{statusIds.length}</p>
             </div>
           </section>
-          {tasks.map((tasks) => )}
+          <div className="grid grid-cols-1 gap-3 mt-2">
+            {tasks.map((task) => (
+              <SingleTask task={task} key={task._id} />
+            ))}
+          </div>
         </div>
       </div>
     </>
