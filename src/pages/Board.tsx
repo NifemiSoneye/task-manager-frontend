@@ -23,14 +23,7 @@ const Board = () => {
     { label: "Done", status: "done", count: data?.tasksDone ?? 0 },
   ];
 
-  const header =
-    activeTab === "todo"
-      ? "To Do"
-      : activeTab === "inprogress"
-        ? "In Progress"
-        : activeTab === "done"
-          ? "Done"
-          : null;
+
 
   if (isTasksLoading)
     return (
@@ -81,16 +74,16 @@ const Board = () => {
       {/* Mobile: single active column */}
       {data && (
         <div className="block md:hidden m-3">
-          <TaskView data={data} status={activeTab} header={header as string} />
+          <TaskView data={data} status={activeTab}  />
         </div>
       )}
 
       {/* Desktop: all 3 columns */}
       {data && (
         <div className="hidden md:grid grid-cols-3 gap-4 m-3">
-          <TaskView data={data} status="todo" header={header as string} />
-          <TaskView data={data} status="inprogress" header={header as string} />
-          <TaskView data={data} status="done" header={header as string} />
+          <TaskView data={data} status="todo"  />
+          <TaskView data={data} status="inprogress" />
+          <TaskView data={data} status="done"  />
         </div>
       )}
     </div>
