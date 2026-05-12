@@ -14,6 +14,7 @@ import { Input } from "@/components/ui/input";
 import { useUpdateBoardMutation } from "@/features/boards/boardApiSlice";
 import { useNavigate } from "react-router-dom";
 import getTimeAgo from "@/lib/getTimeAgo";
+import { useToast } from "@/hooks/use-toast";
 type Props = {
   board: Board;
   index: number;
@@ -48,6 +49,8 @@ const BoardsList = ({ board, index }: Props) => {
     setErrMsg("");
   }, [newTitle]);
 
+  const { toast } = useToast();
+
   const [deleteBoard, { isLoading: isDeleteLoading }] =
     useDeleteBoardMutation();
 
@@ -55,16 +58,29 @@ const BoardsList = ({ board, index }: Props) => {
     useUpdateBoardMutation();
   const handleDelete = async () => {
     try {
-      await deleteBoard({ id: board.id }).unwrap();
+      const response = await deleteBoard({ id: board.id }).unwrap();
+      toast({
+        variant: "default",
+        title: "Success! 🎉",
+        description: response.message,
+      });
     } catch (err) {
       console.error("Failed to delete board:", err);
     }
   };
   const handleUpdate = async () => {
     try {
-      await updateBoard({ id: board.id, title: newTitle }).unwrap();
+      const response = await updateBoard({
+        id: board.id,
+        title: newTitle,
+      }).unwrap();
       setNewTitle("");
       setIsEditing(false);
+      toast({
+        variant: "default",
+        title: "Success! 🎉",
+        description: response.message,
+      });
     } catch (err: any) {
       if (!err.status) {
         setErrMsg("No Server Response");

@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { useUpdateTaskMutation } from "@/features/tasks/taskApiSlice";
 import { Input } from "@/components/ui/input";
 import { useDeleteTaskMutation } from "@/features/tasks/taskApiSlice";
+import { useToast } from "@/hooks/use-toast";
 
 interface Data {
   taskCount: number;
@@ -56,6 +57,7 @@ const TaskView = ({ data, status }: TaskViewProps) => {
   const [FormStatus, setFormStatus] = useState<Task["status"]>("todo");
   const [priority, setPriority] = useState<Task["priority"]>("medium");
   const [dueDate, setDueDate] = useState("");
+  const { toast } = useToast();
 
   const [taskName, setTaskName] = useState("");
   useEffect(() => {
@@ -71,11 +73,16 @@ const TaskView = ({ data, status }: TaskViewProps) => {
   };
   const handleCreate = async (taskName: string) => {
     try {
-      await createTask({
+      const response = await createTask({
         boardId: id,
         title: taskName,
         status: status,
       }).unwrap();
+      toast({
+        variant: "default",
+        title: "Success! 🎉",
+        description: response.message,
+      });
       setTaskName("");
       setIsCreating(false);
     } catch (err: any) {
@@ -93,7 +100,7 @@ const TaskView = ({ data, status }: TaskViewProps) => {
   };
   const handleUpdate = async () => {
     try {
-      await updateTask({
+      const response = await updateTask({
         id: selectedTask?.id,
         title,
         description,
@@ -101,6 +108,11 @@ const TaskView = ({ data, status }: TaskViewProps) => {
         priority,
         dueDate: dueDate ? new Date(dueDate).toISOString() : null,
       }).unwrap();
+      toast({
+        variant: "default",
+        title: "Success! 🎉",
+        description: response.message,
+      });
       handleClose();
     } catch (err: any) {
       if (!err.status) {
@@ -118,7 +130,12 @@ const TaskView = ({ data, status }: TaskViewProps) => {
 
   const handleDelete = async () => {
     try {
-      await deleteTask({ id: selectedTask?.id }).unwrap();
+      const response = await deleteTask({ id: selectedTask?.id }).unwrap();
+      toast({
+        variant: "default",
+        title: "Success! 🎉",
+        description: response.message,
+      });
       setSelectedTask(null);
     } catch (err) {
       console.error("Failed to delete board:", err);

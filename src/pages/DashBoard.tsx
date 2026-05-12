@@ -12,6 +12,7 @@ import { LoaderCircle } from "lucide-react";
 import { selectSearch } from "@/features/ui/searchSlice";
 import SearchBar from "@/components/common/SearchBar";
 import DashNav from "@/components/common/DashNav";
+import { useToast } from "@/hooks/use-toast";
 const DashBoard = () => {
   const [createBoard, { isLoading: isBoardLoading }] = useCreateBoardMutation();
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -23,15 +24,21 @@ const DashBoard = () => {
   const allBoards = useSelector(selectAllBoards);
   const search = useSelector(selectSearch);
   const errRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     setErrMsg("");
   }, [boardName]);
   const handleCreate = async (boardName: string) => {
     try {
-      await createBoard({ title: boardName }).unwrap();
+      const response = await createBoard({ title: boardName }).unwrap();
       setBoardName("");
       setIsOpen(false);
+      toast({
+        variant: "default",
+        title: "Success! 🎉",
+        description: response.message,
+      });
     } catch (err: any) {
       if (!err.status) {
         setErrMsg("No Server Response");

@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import DashNav from "@/components/common/DashNav";
 import SideBar from "./SideBar";
+import { Toaster } from "@/components/ui/toaster";
 
 const DashBoardLayout = () => {
   return (
@@ -8,7 +9,9 @@ const DashBoardLayout = () => {
       <SideBar />
       <div className="flex-1 ">
         <DashNav />
-        <Outlet /> {/* or children */}
+        <Outlet />
+        <Toaster />
+        {/* or children */}
       </div>
     </div>
   );

@@ -13,7 +13,7 @@ const SearchBar = () => {
         name="search"
         type="text"
         placeholder="Search Boards..."
-        className="lg:w-[15vw] rounded-sm lg:p-5 text-white focus:outline-none w-[50vw] p-3 border-transparent "
+        className="lg:w-[15vw] rounded-sm lg:p-5 text-white focus:outline-none w-[50vw] p-3 border-transparent  "
         value={search}
         onChange={handleSearch}
       />
