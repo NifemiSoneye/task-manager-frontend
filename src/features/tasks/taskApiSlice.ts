@@ -62,6 +62,7 @@ export const tasksApiSlice = apiSlice.injectEndpoints({
       }),
       invalidatesTags: (result, error, arg) => [{ type: "Task", id: arg.id }],
     }),
+
     deleteTask: builder.mutation({
       query: ({ id }) => ({
         url: `/tasks/${id}`,

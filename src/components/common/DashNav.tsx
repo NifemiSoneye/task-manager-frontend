@@ -7,6 +7,9 @@ import useAuth from "@/hooks/useAuth";
 import SearchBar from "./SearchBar";
 import { useParams } from "react-router-dom";
 import { useGetBoardQuery } from "@/features/boards/boardApiSlice";
+import { useSendLogoutMutation } from "@/features/auth/authApiSlice";
+import { useNavigate } from "react-router-dom";
+import { LoaderCircle } from "lucide-react";
 const DashNav = () => {
   const isOpen = useSelector(selectSidebarOpen);
   const { username } = useAuth();
@@ -17,16 +20,27 @@ const DashNav = () => {
   const { data: board } = useGetBoardQuery(id!, {
     skip: !id,
   });
+  const [sendLogout, { isLoading }] = useSendLogoutMutation();
 
   const flipSideBar = () => {
     dispatch(toggleSidebar());
+  };
+
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    try {
+      await sendLogout(undefined).unwrap();
+      navigate("/");
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
   };
 
   const menuIcon = new URL("../../assets/icon-hamburger.svg", import.meta.url)
     .href;
   return (
     <div
-      className={`bg-[#0B1628]/60 flex justify-between py-2 px-3 border-b border-b-[#292c33]   ${
+      className={`bg-[#0B1628]/60 flex justify-between py-2 lg:px-5 px-3 border-b border-b-[#292c33]   ${
         id ? "bg-[#132040] border-l border-l-[#292c33]" : ""
       }`}
     >
@@ -62,14 +76,19 @@ const DashNav = () => {
           <SearchBar />
         </div>
 
-        <Button
-          type="button"
-          variant="default"
-          title="Sidebar"
-          className="bg-[#C9A84C] text-black lg:m-3 lg:p-5 rounded-sm "
-        >
-          <FontAwesomeIcon icon={faRightFromBracket} />
-        </Button>
+        {isLoading ? (
+          <LoaderCircle className="animate-spin text-white" />
+        ) : (
+          <Button
+            type="button"
+            variant="default"
+            title="Sidebar"
+            className="bg-[#C9A84C] text-black lg:m-3 lg:p-5 rounded-sm "
+            onClick={handleLogout}
+          >
+            <FontAwesomeIcon icon={faRightFromBracket} />
+          </Button>
+        )}
       </div>
     </div>
   );

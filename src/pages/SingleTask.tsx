@@ -1,15 +1,35 @@
 import { type Task } from "@/lib/types";
 import formatDueDate from "@/lib/formatDate";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 interface SingleTaskProps {
   task: Task;
   onSelect: (task: Task) => void;
 }
 
 const SingleTask = ({ task, onSelect }: SingleTaskProps) => {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: task.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.4 : 1,
+  };
   return (
     <div
-      className="bg-[#132040] rounded-md p-3 mx-3 border border-[#FFFFFF12]"
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
       onClick={() => onSelect(task)}
+      className="bg-[#132040] rounded-md p-3 mx-3 border border-[#FFFFFF12] cursor-grab active:cursor-grabbing"
     >
       <p className="text-white text-[0.855rem] font-semibold mb-[0.55rem]">
         {task.title}

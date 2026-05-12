@@ -94,7 +94,7 @@ const SideBar = () => {
                     ${
                       id
                         ? "flex items-center gap-2 hover:bg-background/10 rounded-md p-1 cursor-pointer "
-                        : "bg-background/10 text-white rounded-md p-1 cursor-pointer"
+                        : "bg-[#C9A84C1A] text-[#C9A84C] rounded-md p-1 cursor-pointer"
                     }`}
                 onClick={() => {
                   navigate(`/dashboard`);

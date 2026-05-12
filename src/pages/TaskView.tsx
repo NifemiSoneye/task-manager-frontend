@@ -12,6 +12,11 @@ import { useUpdateTaskMutation } from "@/features/tasks/taskApiSlice";
 import { Input } from "@/components/ui/input";
 import { useDeleteTaskMutation } from "@/features/tasks/taskApiSlice";
 import { useToast } from "@/hooks/use-toast";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import { useDroppable } from "@dnd-kit/core";
 
 interface Data {
   taskCount: number;
@@ -145,6 +150,9 @@ const TaskView = ({ data, status }: TaskViewProps) => {
     setSelectedTask(null);
     setModalErrMsg("");
   };
+  const { setNodeRef: setDroppableRef } = useDroppable({
+    id: status, // "todo", "inprogress", or "done"
+  });
   return (
     <>
       <div>
@@ -158,15 +166,23 @@ const TaskView = ({ data, status }: TaskViewProps) => {
             </div>
           </section>
           <div className="flex flex-col flex-1">
-            <div className="grid grid-cols-1 gap-3 mt-2">
-              {tasks.map((task) => (
-                <SingleTask
-                  task={task}
-                  key={task._id}
-                  onSelect={handleSelectTask}
-                />
-              ))}
-            </div>
+            <SortableContext
+              items={tasks.map((task) => task.id)}
+              strategy={verticalListSortingStrategy}
+            >
+              <div
+                ref={setDroppableRef}
+                className="grid grid-cols-1 gap-3 mt-2 min-h-12.5"
+              >
+                {tasks.map((task) => (
+                  <SingleTask
+                    task={task}
+                    key={task._id}
+                    onSelect={handleSelectTask}
+                  />
+                ))}
+              </div>
+            </SortableContext>
 
             <section className="mt-auto pt-4 m-3">
               {isCreating ? (
