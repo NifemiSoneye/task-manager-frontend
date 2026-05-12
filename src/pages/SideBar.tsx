@@ -9,6 +9,7 @@ import { useGetAllBoardsQuery } from "@/features/boards/boardApiSlice";
 import { selectAllBoards } from "@/features/boards/boardApiSlice";
 import useAuth from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 // read state
 
 const getInitials = (fullName: string): string => {
@@ -54,6 +55,10 @@ const SideBar = () => {
   const allBoards = useSelector(selectAllBoards);
 
   const navigate = useNavigate();
+  const { id } = useParams();
+  const closeSideBar = () => {
+    dispatch(toggleSidebar());
+  };
 
   return (
     <>
@@ -84,8 +89,19 @@ const SideBar = () => {
             <p className="uppercase">Menu</p>
 
             <section>
-              <div className="flex items-center gap-3 text-[0.875rem] font-semibold cursor-pointer mb-0.5 py-[0.6rem] px-3 ">
-                <div className="text-[1rem] w-5">⊞</div>
+              <div
+                className={`flex items-center gap-3 text-[0.875rem] font-semibold cursor-pointer my-0.5 py-[0.6rem] px-3
+                    ${
+                      id
+                        ? "flex items-center gap-2 hover:bg-background/10 rounded-md p-1 cursor-pointer "
+                        : "bg-background/10 text-white rounded-md p-1 cursor-pointer"
+                    }`}
+                onClick={() => {
+                  navigate(`/dashboard`);
+                  closeSideBar();
+                }}
+              >
+                <div className="text-[1rem] w-5">▦</div>
                 <p>Dashboard</p>
               </div>
               <div className="flex items-center gap-3 text-[0.875rem] font-semibold cursor-pointer mb-0.5 py-[0.6rem] px-3">
@@ -98,20 +114,31 @@ const SideBar = () => {
           <section className="text-xs text-[#8A93A8] p-6  font-semibold mb-5">
             <p className="uppercase">Recent Boards</p>
             <section className="grid grid-cols-1 gap-3 mt-5 ">
-              {allBoards.map((board, index) => (
-                <section>
-                  <div
-                    className="flex items-center gap-2 hover:bg-background/10 rounded-md p-1 cursor-pointer group"
-                    onClick={() => navigate(`/boards/${board.id}`)}
-                  >
-                    <div
-                      className="w-2 h-2 rounded-[50%]"
-                      style={{ background: getDotColor(index) }}
-                    ></div>
-                    <p className="group-hover:text-white">{board.title}</p>
-                  </div>
-                </section>
-              ))}
+              {allBoards
+                .slice(0, 4)
+                .reverse()
+                .map((board, index) => {
+                  const boardClicked = board.id === id;
+                  return (
+                    <section key={board.id}>
+                      <div
+                        className={`flex items-center gap-2 hover:bg-background/10 rounded-md p-1 cursor-pointer group  ${
+                          boardClicked ? "bg-background/10 text-white" : ""
+                        }`}
+                        onClick={() => {
+                          navigate(`/board/${board.id}`);
+                          closeSideBar();
+                        }}
+                      >
+                        <div
+                          className="w-2 h-2 rounded-[50%]"
+                          style={{ background: getDotColor(index) }}
+                        ></div>
+                        <p className="group-hover:text-white">{board.title}</p>
+                      </div>
+                    </section>
+                  );
+                })}
             </section>
           </section>
         </div>

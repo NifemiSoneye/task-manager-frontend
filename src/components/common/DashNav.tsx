@@ -5,42 +5,60 @@ import { useSelector, useDispatch } from "react-redux";
 import { selectSidebarOpen, toggleSidebar } from "@/features/ui/uiSlice";
 import useAuth from "@/hooks/useAuth";
 import SearchBar from "./SearchBar";
+import { useParams } from "react-router-dom";
+import { useGetBoardQuery } from "@/features/boards/boardApiSlice";
 const DashNav = () => {
   const isOpen = useSelector(selectSidebarOpen);
   const { username } = useAuth();
   // dispatch actions
   const dispatch = useDispatch();
+  const { id } = useParams();
 
-  const openSideBar = () => {
+  const { data: board } = useGetBoardQuery(id!, {
+    skip: !id,
+  });
+
+  const flipSideBar = () => {
     dispatch(toggleSidebar());
   };
+
   const menuIcon = new URL("../../assets/icon-hamburger.svg", import.meta.url)
     .href;
   return (
-    <div className="bg-[#0B1628]/60 flex justify-between p-3 border-b border-b-[#292c33] ">
+    <div
+      className={`bg-[#0B1628]/60 flex justify-between py-2 px-3 border-b border-b-[#292c33]   ${
+        id ? "bg-[#132040] border-l border-l-[#292c33]" : ""
+      }`}
+    >
       <div className="flex items-center">
         <Button
           type="button"
           variant="default"
           title="Sidebar"
-          className="bg-transparent"
-          onClick={openSideBar}
+          className="bg-transparent lg:hidden"
+          onClick={flipSideBar}
         >
           <img
             src={menuIcon}
             alt="hamburger icon"
-            className="lg:hidden cursor-pointer h-4 w-4"
+            className="cursor-pointer h-4 w-4"
           />
         </Button>
         <div>
-          <p className="text-white">My Boards</p>
-          <p className="text-[0.8rem] mt-[0.15rem] text-[#8A93A8] hidden lg:block">
-            Welcome back, {username}
-          </p>
+          {id ? (
+            <p className="text-white text-lg">{board?.title}</p>
+          ) : (
+            <>
+              <p className="text-white">My Boards</p>
+              <p className="text-[0.8rem] mt-[0.15rem] text-[#8A93A8] hidden lg:block">
+                Welcome back, {username}
+              </p>{" "}
+            </>
+          )}
         </div>
       </div>
       <div className="flex items-center mr-6">
-        <div className="hidden lg:block">
+        <div className={`hidden lg:block ${id ? "lg:hidden" : null}`}>
           <SearchBar />
         </div>
 
