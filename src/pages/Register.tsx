@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { LoaderCircle } from "lucide-react";
 import { Eye, EyeOff } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PASSWORD_REGEX = /^[A-Za-z0-9!@#$%]{8,24}$/;
@@ -46,9 +47,16 @@ const Register = () => {
     setErrMsg("");
   }, [email, password, username]);
 
+  const { toast } = useToast();
+
   const handleSubmit = async () => {
     try {
       await register({ email, username, password }).unwrap();
+      toast({
+        variant: "default",
+        title: "Success! 🎉",
+        description: "User succesfully logged in",
+      });
       setEmail("");
       setPassword("");
       setUsername("");

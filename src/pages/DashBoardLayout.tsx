@@ -10,7 +10,6 @@ const DashBoardLayout = () => {
       <div className="flex-1 ">
         <DashNav />
         <Outlet />
-        <Toaster />
         {/* or children */}
       </div>
     </div>

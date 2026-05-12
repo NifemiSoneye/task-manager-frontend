@@ -13,6 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { LoaderCircle } from "lucide-react";
 import { Eye, EyeOff } from "lucide-react";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/hooks/use-toast";
 const Login = () => {
   const thisYear = new Date().getFullYear();
   const userRef = useRef<HTMLInputElement>(null);
@@ -26,6 +28,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const validEmail = EMAIL_REGEX.test(email);
   const validPassword = PASSWORD_REGEX.test(password);
+  const { toast } = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   let canSubmit;
@@ -49,6 +52,11 @@ const Login = () => {
     try {
       const { accessToken } = await login({ email, password }).unwrap();
       dispatch(setCredentials({ accessToken }));
+      toast({
+        variant: "default",
+        title: "Success! 🎉",
+        description: "User succesfully logged in",
+      });
       setEmail("");
       setPassword("");
       navigate("/dashboard");

@@ -211,6 +211,7 @@ const TaskView = ({ data, status }: TaskViewProps) => {
                       onClick={() => {
                         setIsCreating(false);
                         setTaskName("");
+                        setErrMsg("");
                       }}
                     >
                       Cancel
