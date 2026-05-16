@@ -105,7 +105,10 @@ const BoardsList = ({ board, index }: Props) => {
   const getGradient = (index: number) =>
     boardGradients[index % boardGradients.length];
   return (
-    <section>
+    <section
+      className="opacity-0 animate-fade-up"
+      style={{ animationDelay: `${index * 100}ms` }}
+    >
       <div
         className="bg-[#132040]  rounded-md hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] transition-shadow duration-300  group min-h-55 overflow-hidden"
         onClick={handleNavigateToBoard}

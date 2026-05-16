@@ -20,8 +20,12 @@ const DashBoard = () => {
   const [page, setPage] = useState(1);
   const search = useSelector(selectSearch);
   const [debouncedSearch, setDebouncedSearch] = useState(""); // debounced value — for everything else
-  const { data: analytics, isLoading: analyticsLoading } =
-    useGetAnalyticsQuery(undefined);
+  const { data: analytics, isLoading: analyticsLoading } = useGetAnalyticsQuery(
+    undefined,
+    {
+      refetchOnMountOrArgChange: true,
+    },
+  );
   const { data, isLoading } = useGetAllBoardsQuery({
     page,
     search: debouncedSearch,
@@ -90,7 +94,7 @@ const DashBoard = () => {
     <>
       <div className="p-5">
         <section className=" grid grid-cols-2 gap-2 mb-3 lg:grid-cols-4">
-          <div className="bg-[#132040] p-4 rounded-md">
+          <div className="bg-[#132040] p-4 rounded-md opacity-0 animate-fade-up delay-75">
             <div className="text-[1.1rem] mb-3">📁</div>
             <div className="text-white text-[1.5rem]">
               {analytics?.totalBoards}
@@ -99,7 +103,7 @@ const DashBoard = () => {
               Total Boards
             </p>
           </div>
-          <div className="bg-[#132040] p-4 rounded-md">
+          <div className="bg-[#132040] p-4 rounded-md opacity-0 animate-fade-up delay-150">
             <div className="text-[1.1rem] mb-3">✅</div>
             <div className="text-white text-[1.5rem]">
               {analytics?.tasksDone}
@@ -108,7 +112,7 @@ const DashBoard = () => {
               Tasks Done
             </p>
           </div>
-          <div className="bg-[#132040] p-4 rounded-md">
+          <div className="bg-[#132040] p-4 rounded-md opacity-0 animate-fade-up delay-225">
             <div className="text-[1.1rem] mb-3">⌛</div>
             <div className="text-white text-[1.5rem]">
               {analytics?.inProgress}
@@ -117,7 +121,7 @@ const DashBoard = () => {
               In progress
             </p>
           </div>
-          <div className="bg-[#132040] p-4 rounded-md">
+          <div className="bg-[#132040] p-4 rounded-md opacity-0 animate-fade-up delay-300">
             <div className="text-[1.1rem] mb-3">📁</div>
             <div className="text-white text-[1.5rem]">{analytics?.toDo}</div>
             <p className="text-xs text-[#8A93A8] uppercase text-nowrap font-semibold">

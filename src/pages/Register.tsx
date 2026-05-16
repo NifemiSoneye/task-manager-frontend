@@ -92,7 +92,7 @@ const Register = () => {
           Flow
         </p>
 
-        <div className="mt-18">
+        <div>
           <p className="text-white font-['Playfair_Display_Variable'] text-[2rem] font-semibold leading-tight mb-6  ">
             Your work, <br />
             <span className="text-[#C9A84C] italic">finally organised.</span>
@@ -142,7 +142,7 @@ const Register = () => {
           &copy; {thisYear} Taskflow.
         </p>
       </div>
-      <div className="p-4 md:flex md:flex-col justify-center items-center md:text-left md:p-12 ">
+      <div className="p-4 md:flex md:flex-col justify-center items-center md:text-left md:p-12 opacity-0 animate-fade-up delay-150 ">
         <div className="lg:max-w-100 w-full">
           <p className="text-[#C9A84C] font-['Playfair_Display_Variable'] text-2xl my-3 md:hidden">
             TaskFlow

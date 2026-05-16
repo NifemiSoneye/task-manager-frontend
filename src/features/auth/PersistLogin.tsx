@@ -5,7 +5,7 @@ import useLocalStorage from "@/hooks/useLocalStorage";
 import { useSelector } from "react-redux";
 import { selectCurrentToken } from "./authSlice";
 import { useNavigate } from "react-router-dom";
-
+import { LoaderCircle } from "lucide-react";
 const PersistLogin = () => {
   const navigate = useNavigate();
   const [persist] = useLocalStorage<boolean>("persist", false);
@@ -55,7 +55,13 @@ const PersistLogin = () => {
   } else if (isLoading) {
     //persist: yes, token: no
     console.log("loading");
-    content = <p>Loading...</p>;
+    content = (
+      <div className="fixed inset-0 z-50 bg-[#0B1628]">
+        <div className="w-full h-dvh grid place-content-center">
+          <LoaderCircle className="h-48 w-48 animate-spin text-white" />
+        </div>
+      </div>
+    );
   } else if (isError) {
     content = null;
   } else if (isSuccess && trueSuccess) {

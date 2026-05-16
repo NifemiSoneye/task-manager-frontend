@@ -156,7 +156,7 @@ const TaskView = ({ data, status }: TaskViewProps) => {
   return (
     <>
       <div>
-        <div className="bg-[#172035] p-3 rounded-sm  flex flex-col min-h-[40vh]">
+        <div className="bg-[#172035] p-3 rounded-sm  flex flex-col min-h-[40vh] ">
           <section className="flex items-center justify-between border-b border-b-[#292c33] pb-4">
             <div className="flex items-center gap-2">
               <p className="text-white text-sm uppercase">{header}</p>

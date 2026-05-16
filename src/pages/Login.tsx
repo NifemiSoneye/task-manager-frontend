@@ -147,7 +147,7 @@ const Login = () => {
           &copy; {thisYear} Taskflow.
         </p>
       </div>
-      <div className="p-4 md:flex md:flex-col justify-center items-center md:text-left md:p-12 ">
+      <div className="p-4 md:flex md:flex-col justify-center items-center md:text-left md:p-12 opacity-0 animate-fade-up delay-150">
         <div className="lg:max-w-100 w-full">
           <p className="text-[#C9A84C] font-['Playfair_Display_Variable'] text-2xl my-3 md:hidden">
             TaskFlow

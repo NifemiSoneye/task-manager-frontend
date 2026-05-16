@@ -29,7 +29,7 @@ const SingleTask = ({ task, onSelect }: SingleTaskProps) => {
       {...attributes}
       {...listeners}
       onClick={() => onSelect(task)}
-      className="bg-[#132040] rounded-md p-3 mx-3 border border-[#FFFFFF12] cursor-grab active:cursor-grabbing"
+      className="bg-[#132040] rounded-md p-3 mx-3 border border-[#FFFFFF12] cursor-grab active:cursor-grabbing opacity-0 animate-fade-up"
     >
       <p className="text-white text-[0.855rem] font-semibold mb-[0.55rem]">
         {task.title}

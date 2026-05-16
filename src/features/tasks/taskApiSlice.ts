@@ -60,7 +60,10 @@ export const tasksApiSlice = apiSlice.injectEndpoints({
           ...initialTask,
         },
       }),
-      invalidatesTags: (result, error, arg) => [{ type: "Task", id: arg.id }],
+      invalidatesTags: (result, error, arg) => [
+        { type: "Task", id: arg.id },
+        { type: "Task", id: "LIST" } /* invalidates analytics cache */,
+      ],
     }),
 
     deleteTask: builder.mutation({

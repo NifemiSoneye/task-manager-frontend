@@ -11,7 +11,7 @@ const Landing = () => {
       <Nav />
       <div className="max-w-7xl mx-auto lg:pt-[10vh] pt-[5vh]">
         <div className="lg:grid grid-cols-2 lg:gap-16 lg:items-center py-1 lg:pb-28 lg:pt-10 lg:px-20 px-4">
-          <section className=" py-2 lg:py-0">
+          <section className=" py-2 lg:py-0 opacity-0 animate-fade-up delay-75">
             <div
               className="flex justify-evenly md:justify-around  
             items-center text-[#C9A84C] p-2 md:p-1 border border-[rgb(93,80,49)] bg-[rgba(201,168,76,0.1)] max-w-[70%]  mx-3 my-5 md:mb-7 rounded-4xl text-[0.75rem] shadow-[0_0_40px_rgba(201,168,76,0.15)] md:max-w-[50%] md:mx-0"
@@ -60,7 +60,7 @@ const Landing = () => {
               No credit card required. Free to use.
             </p>
           </section>
-          <section className="bg-[#132040] px-7 py-5 my-8 shadow-[0_40px_80px_rgba(0,0,0,0.5)] border border-transparent rounded-md md:max-h-[60vh] lg:max-h-none overflow-hidden">
+          <section className="bg-[#132040] px-7 py-5 my-8 shadow-[0_40px_80px_rgba(0,0,0,0.5)] border border-transparent rounded-md md:max-h-[60vh] lg:max-h-none overflow-hidden opacity-0 animate-fade-up delay-300">
             <section className="flex justify-between items-center pb-2">
               <p className="text-white text-[0.7rem] font-['Playfair_Display_Variable']">
                 Product Roadmap
