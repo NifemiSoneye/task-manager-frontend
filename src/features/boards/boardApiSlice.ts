@@ -11,7 +11,7 @@ export const boardsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllBoards: builder.query({
       query: ({ page = 1, search = "" }: { page: number; search: string }) => ({
-        url: `/boards?page=${page}&limit=6&search=${search}`,
+        url: `/boards?page=${page}&limit=4&search=${search}`,
         validateStatus: (response, result) => {
           return response.status === 200 && !result.isError;
         },

@@ -14,7 +14,7 @@ const Landing = () => {
           <section className=" py-2 lg:py-0 opacity-0 animate-fade-up delay-75">
             <div
               className="flex justify-evenly md:justify-around  
-            items-center text-[#C9A84C] p-2 md:p-1 border border-[rgb(93,80,49)] bg-[rgba(201,168,76,0.1)] max-w-[70%]  mx-3 my-5 md:mb-7 rounded-4xl text-[0.75rem] shadow-[0_0_40px_rgba(201,168,76,0.15)] md:max-w-[50%] md:mx-0"
+            items-center text-[#C9A84C] p-2 md:p-1 border border-[rgb(93,80,49)] bg-[rgba(201,168,76,0.1)] max-w-[70%] my-5 md:mb-7 rounded-4xl text-[0.75rem] shadow-[0_0_40px_rgba(201,168,76,0.15)] md:max-w-[50%] md:mx-0"
             >
               <div className="w-2 h-2  rounded-[50%] bg-[#f59e0b] animate-pulse"></div>
               <p className=" text-xs">REAL-TIME TASK MANAGEMENT</p>
@@ -40,7 +40,7 @@ const Landing = () => {
                 type="button"
                 variant="link"
                 title="Start for free"
-                className="bg-[#C9A84C] text-black rounded-sm p-6 w-full sm:w-auto sm:min-w-[10vw] hover:no-underline hover:cursor-pointer"
+                className="bg-[#C9A84C] text-black rounded-sm p-6 w-full sm:w-auto sm:min-w-[10vw] hover:no-underline hover:cursor-pointer transition-all duration-300  hover:border-[#E2C47A] hover:bg-[#E2C47A] hover:shadow-[0_0_10px_rgba(226,196,122,1.0)] transform hover:-translate-y-px"
                 onClick={() => navigate("/register")}
               >
                 Start for free
@@ -49,7 +49,7 @@ const Landing = () => {
                 type="button"
                 variant="default"
                 title="Login"
-                className="bg-transparent text-white rounded-sm p-6 border border-[#E2C47A] w-full sm:w-auto sm:min-w-[10vw] hover:cursor-pointer"
+                className="bg-transparent rounded-sm p-6 border w-full sm:w-auto sm:min-w-[10vw] hover:cursor-pointer border-[#292c33] text-white  cursor-pointer hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all duration-300"
                 onClick={() => navigate("/login")}
               >
                 Login
@@ -74,7 +74,7 @@ const Landing = () => {
             <hr />
             <section className="grid grid-cols-3 gap-3">
               <div className="bg-[#1E3160] my-4 text-[0.6rem] py-2 rounded-md">
-                <div className="flex items-center justify-around pb-1">
+                <div className="flex items-center justify-between pb-1 lg:px-6 px-3">
                   <div className="w-2 h-2  rounded-[50%] bg-[#6b7280]"></div>
                   <p className="text-white ] ">Todo</p>
                 </div>
@@ -95,9 +95,9 @@ const Landing = () => {
                 </div>
               </div>
               <div className="bg-[#1E3160] my-4 text-[0.6rem] py-2 rounded-md">
-                <div className="flex items-center justify-evenly pb-1">
+                <div className="flex items-center justify-between pb-1 lg:px-6 px-3">
                   <div className="w-2 h-2  rounded-[50%] bg-[#f59e0b]"></div>
-                  <p className="text-white  text-nowrap ">IN PROGRESS</p>
+                  <p className="text-white  text-nowrap ">In progress</p>
                 </div>
                 <div className="bg-[#0B1628] mx-2 border border-transparent rounded-sm p-2">
                   <p className="text-white">AUTH middleware</p>
@@ -116,7 +116,7 @@ const Landing = () => {
                 </div>
               </div>
               <div className="bg-[#1E3160] my-4 text-[0.6rem] py-2 rounded-md">
-                <div className="flex items-center justify-evenly pb-1">
+                <div className="flex items-center justify-between pb-1 lg:px-6 px-3">
                   <div className="w-2 h-2  rounded-[50%] bg-[#22c55e] "></div>
                   <p className="text-white">Done</p>
                 </div>

@@ -18,13 +18,13 @@ const Footer = () => {
         </p>
         <Button
           type="button"
-          className="bg-[#C9A84C] text-black p-6 my-6 rounded-sm w-full relative md:w-auto"
+          className="bg-[#C9A84C] text-black p-6 my-6 rounded-sm w-full relative md:w-auto transition-all duration-300  hover:border-[#E2C47A] hover:bg-[#E2C47A] hover:shadow-[0_0_10px_rgba(226,196,122,1.0)] transform hover:-translate-y-px"
         >
           Create your account
         </Button>
       </div>
       <div className="mt-10 border-t border-t-gray-500 pt-6 px-4 sm:p-6 text-center sm:flex justify-between items-center">
-        <p className="text-[#C9A84C] font-['Playfair_Display_Variable']">
+        <p className="text-[#C9A84C] font-['Playfair_Display_Variable'] ">
           TaskFlow
         </p>
         <p className=" text-[0.78rem] text-[#8A93A8]">

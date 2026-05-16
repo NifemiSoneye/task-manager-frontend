@@ -96,7 +96,7 @@ const DashBoard = () => {
         <section className=" grid grid-cols-2 gap-2 mb-3 lg:grid-cols-4">
           <div className="bg-[#132040] p-4 rounded-md opacity-0 animate-fade-up delay-75">
             <div className="text-[1.1rem] mb-3">📁</div>
-            <div className="text-white text-[1.5rem]">
+            <div className="text-white text-[1.5rem] font-['Playfair_Display_Variable'] font-bold">
               {analytics?.totalBoards}
             </div>
             <p className="text-xs text-[#8A93A8] uppercase text-nowrap font-semibold">
@@ -105,7 +105,7 @@ const DashBoard = () => {
           </div>
           <div className="bg-[#132040] p-4 rounded-md opacity-0 animate-fade-up delay-150">
             <div className="text-[1.1rem] mb-3">✅</div>
-            <div className="text-white text-[1.5rem]">
+            <div className="text-white text-[1.5rem] font-['Playfair_Display_Variable'] font-bold">
               {analytics?.tasksDone}
             </div>
             <p className="text-xs text-[#8A93A8] uppercase text-nowrap">
@@ -114,7 +114,7 @@ const DashBoard = () => {
           </div>
           <div className="bg-[#132040] p-4 rounded-md opacity-0 animate-fade-up delay-225">
             <div className="text-[1.1rem] mb-3">⌛</div>
-            <div className="text-white text-[1.5rem]">
+            <div className="text-white text-[1.5rem] font-['Playfair_Display_Variable'] font-bold">
               {analytics?.inProgress}
             </div>
             <p className="text-xs text-[#8A93A8] uppercase text-nowrap font-semibold">
@@ -123,14 +123,18 @@ const DashBoard = () => {
           </div>
           <div className="bg-[#132040] p-4 rounded-md opacity-0 animate-fade-up delay-300">
             <div className="text-[1.1rem] mb-3">📁</div>
-            <div className="text-white text-[1.5rem]">{analytics?.toDo}</div>
+            <div className="text-white text-[1.5rem] font-['Playfair_Display_Variable'] font-bold">
+              {analytics?.toDo}
+            </div>
             <p className="text-xs text-[#8A93A8] uppercase text-nowrap font-semibold">
               To Do
             </p>
           </div>
         </section>
         <div className="flex justify-between items-center">
-          <h2 className="text-white my-5 ">All Boards</h2>
+          <h2 className="text-white my-5 font-['Playfair_Display_Variable'] ">
+            All Boards
+          </h2>
           {data?.totalPages ? (
             <div className="items-center justify-center gap-4 hidden lg:flex">
               <Button
@@ -165,7 +169,9 @@ const DashBoard = () => {
               <BoardsList key={board!.id} board={board!} index={index} />
             ))
           ) : debouncedSearch ? (
-            <p className="text-white my-5">No board found</p>
+            <p className="text-white my-5 font-['Playfair_Display_Variable']">
+              No board found
+            </p>
           ) : null}
           {debouncedSearch.length === 0 ? (
             <div className="bg-transparent border border-dashed border-[#C9A84C]  rounded-md flex items-center justify-center  flex-col min-h-55">

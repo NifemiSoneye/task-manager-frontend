@@ -147,7 +147,7 @@ const Register = () => {
           <p className="text-[#C9A84C] font-['Playfair_Display_Variable'] text-2xl my-3 md:hidden">
             TaskFlow
           </p>
-          <p className="text-[#C9A84C] uppercase">Get started free</p>
+          <p className="text-[#C9A84C] uppercase text-sm">Get started free</p>
 
           <p className="text-white font-['Playfair_Display_Variable'] text-3xl mt-2 font-semibold ">
             Create your account
@@ -312,9 +312,9 @@ const Register = () => {
             )}
           </Button>
 
-          <p className="text-[#8A93A8] text-center mt-3">
+          <p className="text-[#8A93A8] text-center mt-3 text-sm">
             Already have an account
-            <span className="text-[#C9A84C] ">
+            <span className="text-[#C9A84C] hover:underline">
               <Link to="/login"> Sign in →</Link>
             </span>
           </p>
