@@ -10,8 +10,8 @@ const initialState = boardsAdapter.getInitialState();
 export const boardsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllBoards: builder.query({
-      query: (page: number = 1) => ({
-        url: `/boards?page=${page}&limit=6`,
+      query: ({ page = 1, search = "" }: { page: number; search: string }) => ({
+        url: `/boards?page=${page}&limit=6&search=${search}`,
         validateStatus: (response, result) => {
           return response.status === 200 && !result.isError;
         },
@@ -89,7 +89,7 @@ export const {
 } = boardsApiSlice;
 
 // returns the query result object
-export const selectBoardsResult =
+/* export const selectBoardsResult =
   boardsApiSlice.endpoints.getAllBoards.select(1);
 
 // creates memoized selector
@@ -106,4 +106,4 @@ export const {
   // Pass in a selector that returns the notes slice of state
 } = boardsAdapter.getSelectors(
   (state: RootState) => selectBoardsData(state) ?? initialState,
-);
+); */

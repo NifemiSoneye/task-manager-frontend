@@ -9,7 +9,7 @@ const Landing = () => {
   return (
     <div className="min-h-screen bg-[#0B1628]  pb-5">
       <Nav />
-      <div className=" animate-collapsible-up max-w-7xl mx-auto lg:pt-[10vh] pt-[5vh]">
+      <div className="max-w-7xl mx-auto lg:pt-[10vh] pt-[5vh]">
         <div className="lg:grid grid-cols-2 lg:gap-16 lg:items-center py-1 lg:pb-28 lg:pt-10 lg:px-20 px-4">
           <section className=" py-2 lg:py-0">
             <div

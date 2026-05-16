@@ -1,14 +1,13 @@
 import { useGetAnalyticsQuery } from "@/features/analytics/analyticsApiSlice";
 import { useGetAllBoardsQuery } from "@/features/boards/boardApiSlice";
 import { useSelector } from "react-redux";
-import { selectAllBoards } from "@/features/boards/boardApiSlice";
 import BoardsList from "./BoardsList";
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useCreateBoardMutation } from "@/features/boards/boardApiSlice";
-import { LoaderCircle } from "lucide-react";
+import { LoaderCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { selectSearch } from "@/features/ui/searchSlice";
 import SearchBar from "@/components/common/SearchBar";
 import DashNav from "@/components/common/DashNav";
@@ -18,13 +17,29 @@ const DashBoard = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [boardName, setBoardName] = useState<string>("");
   const [errMsg, setErrMsg] = useState("");
+  const [page, setPage] = useState(1);
+  const search = useSelector(selectSearch);
+  const [debouncedSearch, setDebouncedSearch] = useState(""); // debounced value — for everything else
   const { data: analytics, isLoading: analyticsLoading } =
     useGetAnalyticsQuery(undefined);
-  const { isLoading, isError } = useGetAllBoardsQuery(undefined);
-  const allBoards = useSelector(selectAllBoards);
-  const search = useSelector(selectSearch);
+  const { data, isLoading } = useGetAllBoardsQuery({
+    page,
+    search: debouncedSearch,
+  }); //to ensure same timing for boarch changing
+  const boards = data?.ids.map((id) => data.entities[id]) ?? [];
+
   const errRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setDebouncedSearch(search);
+    }, 300);
+    return () => clearTimeout(timeout);
+  }, [search]);
+  useEffect(() => {
+    setPage(1);
+  }, [search]);
 
   useEffect(() => {
     setErrMsg("");
@@ -52,10 +67,16 @@ const DashBoard = () => {
       errRef?.current?.focus();
     }
   };
-  const searchResults =
-    allBoards?.filter((board) =>
-      board.title.toLowerCase().includes(search.toLowerCase()),
-    ) ?? [];
+
+  console.log(
+    "totalPages:",
+    data?.totalPages,
+    "page:",
+    page,
+    "search:",
+    search,
+  );
+
   if (analyticsLoading || isLoading)
     return (
       <div className="fixed inset-0 z-50 bg-[#0B1628]">
@@ -106,20 +127,43 @@ const DashBoard = () => {
         </section>
         <div className="flex justify-between items-center">
           <h2 className="text-white my-5 ">All Boards</h2>
+          {data?.totalPages ? (
+            <div className="items-center justify-center gap-4 hidden lg:flex">
+              <Button
+                variant="default"
+                onClick={() => setPage((p) => p - 1)}
+                disabled={page === 1}
+                className="bg-transparent border border-white/10 text-[#8A93A8] rounded-md px-3 py-2 disabled:opacity-30"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </Button>
+              <p className="text-[#8A93A8] text-sm">
+                Page {page} of {data.totalPages}
+              </p>
+              <Button
+                variant="default"
+                onClick={() => setPage((p) => p + 1)}
+                disabled={page === data.totalPages}
+                className="bg-transparent border border-white/10 text-[#8A93A8] rounded-md px-3 py-2 disabled:opacity-30"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </div>
+          ) : null}
           <div className="lg:hidden">
             <SearchBar />
           </div>
         </div>
 
         <section className="grid grid-cols-1 gap-3 lg:grid-cols-4">
-          {searchResults.length > 0 ? (
-            searchResults.map((board, index) => (
-              <BoardsList key={board.id} board={board} index={index} />
+          {boards.length > 0 ? (
+            boards.map((board, index) => (
+              <BoardsList key={board!.id} board={board!} index={index} />
             ))
-          ) : search ? (
+          ) : debouncedSearch ? (
             <p className="text-white my-5">No board found</p>
           ) : null}
-          {search ? null : (
+          {debouncedSearch.length === 0 ? (
             <div className="bg-transparent border border-dashed border-[#C9A84C]  rounded-md flex items-center justify-center  flex-col min-h-55">
               <div className="bg-[#23252b] h-11 w-11 rounded-full flex items-center justify-center text-xl">
                 <Button
@@ -134,8 +178,32 @@ const DashBoard = () => {
               </div>
               <p className="text-[#8A93A8] text-sm">Create new board</p>
             </div>
-          )}
+          ) : null}
         </section>
+
+        {data?.totalPages ? (
+          <div className="flex items-center justify-center gap-4 mt-6 lg:hidden">
+            <Button
+              variant="default"
+              onClick={() => setPage((p) => p - 1)}
+              disabled={page === 1}
+              className="bg-transparent border border-white/10 text-[#8A93A8] rounded-md px-3 py-2 disabled:opacity-30"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </Button>
+            <p className="text-[#8A93A8] text-sm">
+              Page {page} of {data.totalPages}
+            </p>
+            <Button
+              variant="default"
+              onClick={() => setPage((p) => p + 1)}
+              disabled={page === data.totalPages}
+              className="bg-transparent border border-white/10 text-[#8A93A8] rounded-md px-3 py-2 disabled:opacity-30"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </Button>
+          </div>
+        ) : null}
 
         {isOpen && (
           <>

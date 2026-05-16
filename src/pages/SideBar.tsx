@@ -6,7 +6,6 @@ import {
 } from "@/features/ui/uiSlice";
 import { useGetAllBoardsQuery } from "@/features/boards/boardApiSlice";
 
-import { selectAllBoards } from "@/features/boards/boardApiSlice";
 import useAuth from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
@@ -51,8 +50,8 @@ const SideBar = () => {
   const isOpen = useSelector(selectSidebarOpen);
   const dispatch = useDispatch();
 
-  const { isLoading, isError } = useGetAllBoardsQuery(undefined);
-  const allBoards = useSelector(selectAllBoards);
+  const { data } = useGetAllBoardsQuery({ page: 1, search: "" });
+  const allBoards = data?.ids.map((id) => data.entities[id]) ?? [];
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -114,31 +113,28 @@ const SideBar = () => {
           <section className="text-xs text-[#8A93A8] p-6  font-semibold mb-5">
             <p className="uppercase">Recent Boards</p>
             <section className="grid grid-cols-1 gap-3 mt-5 ">
-              {allBoards
-                .slice(0, 4)
-                .reverse()
-                .map((board, index) => {
-                  const boardClicked = board.id === id;
-                  return (
-                    <section key={board.id}>
+              {allBoards.slice(0, 4).map((board, index) => {
+                const boardClicked = board.id === id;
+                return (
+                  <section key={board.id}>
+                    <div
+                      className={`flex items-center gap-2 hover:bg-background/10 rounded-md p-1 cursor-pointer group  ${
+                        boardClicked ? "bg-background/10 text-white" : ""
+                      }`}
+                      onClick={() => {
+                        navigate(`/board/${board.id}`);
+                        closeSideBar();
+                      }}
+                    >
                       <div
-                        className={`flex items-center gap-2 hover:bg-background/10 rounded-md p-1 cursor-pointer group  ${
-                          boardClicked ? "bg-background/10 text-white" : ""
-                        }`}
-                        onClick={() => {
-                          navigate(`/board/${board.id}`);
-                          closeSideBar();
-                        }}
-                      >
-                        <div
-                          className="w-2 h-2 rounded-[50%]"
-                          style={{ background: getDotColor(index) }}
-                        ></div>
-                        <p className="group-hover:text-white">{board.title}</p>
-                      </div>
-                    </section>
-                  );
-                })}
+                        className="w-2 h-2 rounded-[50%]"
+                        style={{ background: getDotColor(index) }}
+                      ></div>
+                      <p className="group-hover:text-white">{board.title}</p>
+                    </div>
+                  </section>
+                );
+              })}
             </section>
           </section>
         </div>

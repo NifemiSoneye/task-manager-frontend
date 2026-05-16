@@ -28,6 +28,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
           const { data } = await queryFulfilled;
           console.log(data);
           dispatch(logOut());
+          dispatch(apiSlice.util.resetApiState());
         } catch (err) {
           console.log(err);
         }
