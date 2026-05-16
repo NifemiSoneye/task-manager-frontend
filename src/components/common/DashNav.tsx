@@ -60,10 +60,14 @@ const DashNav = () => {
         </Button>
         <div>
           {id ? (
-            <p className="text-white text-lg">{board?.title}</p>
+            <p className="text-white text-lg font-['Playfair_Display_Variable']">
+              {board?.title}
+            </p>
           ) : (
             <>
-              <p className="text-white">My Boards</p>
+              <p className="text-white font-['Playfair_Display_Variable']">
+                My Boards
+              </p>
               <p className="text-[0.8rem] mt-[0.15rem] text-[#8A93A8] hidden lg:block">
                 Welcome back, {username}
               </p>{" "}
@@ -83,7 +87,7 @@ const DashNav = () => {
             type="button"
             variant="default"
             title="Sidebar"
-            className="bg-[#C9A84C] text-black lg:m-3 lg:p-5 rounded-sm "
+            className="bg-[#C9A84C] text-black lg:m-3 lg:p-5 rounded-sm transition-all duration-300 sm:max-w-[10vw] px-5  hover:border-[#E2C47A] hover:bg-[#E2C47A] hover:shadow-[0_0_10px_rgba(226,196,122,1.0)] transform hover:-translate-y-px"
             onClick={handleLogout}
           >
             <FontAwesomeIcon icon={faRightFromBracket} />

@@ -156,7 +156,7 @@ const TaskView = ({ data, status }: TaskViewProps) => {
   return (
     <>
       <div>
-        <div className="bg-[#172035] p-3 rounded-sm  flex flex-col min-h-[40vh] ">
+        <div className="bg-[#172035] p-3 rounded-md  flex flex-col min-h-[40vh] border border-[#8A93A8]/20 ">
           <section className="flex items-center justify-between border-b border-b-[#292c33] pb-4">
             <div className="flex items-center gap-2">
               <p className="text-white text-sm uppercase">{header}</p>
@@ -236,7 +236,7 @@ const TaskView = ({ data, status }: TaskViewProps) => {
                 </>
               ) : (
                 <div
-                  className="bg-transparent border border-dashed border-[#C9A84C] rounded-md flex items-center justify-center flex-col p-3"
+                  className="bg-transparent border border-dashed border-[#8A93A8] rounded-md flex items-center justify-center flex-col p-3"
                   onClick={() => setIsCreating(true)}
                 >
                   <p className="text-[#8A93A8] text-sm">Create new Task</p>

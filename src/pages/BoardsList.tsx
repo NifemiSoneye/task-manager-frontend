@@ -123,7 +123,7 @@ const BoardsList = ({ board, index }: Props) => {
 
           <DropdownMenu>
             <DropdownMenuTrigger
-              className=" top-2 right-2 text-white/60 hover:text-white px-1 lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-200 cursor-pointer shrink-0"
+              className=" top-2 right-2 text-white/60 hover:text-white px-1 lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-200 cursor-pointer shrink-0  rounded-full bg-black/20 "
               onClick={(e) => e.stopPropagation()}
             >
               ⋯

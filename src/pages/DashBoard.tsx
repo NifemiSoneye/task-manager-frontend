@@ -174,8 +174,8 @@ const DashBoard = () => {
             </p>
           ) : null}
           {debouncedSearch.length === 0 ? (
-            <div className="bg-transparent border border-dashed border-[#C9A84C]  rounded-md flex items-center justify-center  flex-col min-h-55">
-              <div className="bg-[#23252b] h-11 w-11 rounded-full flex items-center justify-center text-xl">
+            <div className="bg-transparent border border-dashed hover:border-[#C9A84C] border-[#c9a84c40] rounded-md flex items-center justify-center  flex-col min-h-55 hover:bg-[#b1a27940]/20 group">
+              <div className="bg-[#23252b] h-11 w-11 rounded-full flex items-center justify-center text-xl transition-transform duration-300 group-hover:scale-105">
                 <Button
                   type="button"
                   variant="default"
@@ -183,7 +183,9 @@ const DashBoard = () => {
                   onClick={() => setIsOpen(true)}
                   className="bg-transparent cursor-pointer"
                 >
-                  ➕
+                  <span className="transition-transform duration-300 group-hover:scale-110 inline-block">
+                    ➕
+                  </span>
                 </Button>
               </div>
               <p className="text-[#8A93A8] text-sm">Create new board</p>

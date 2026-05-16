@@ -29,7 +29,7 @@ const SingleTask = ({ task, onSelect }: SingleTaskProps) => {
       {...attributes}
       {...listeners}
       onClick={() => onSelect(task)}
-      className="bg-[#132040] rounded-md p-3 mx-3 border border-[#FFFFFF12] cursor-grab active:cursor-grabbing opacity-0 animate-fade-up"
+      className="bg-[#132040] rounded-md p-3 mx-3 border border-[#FFFFFF12] cursor-grab active:cursor-grabbing opacity-0 animate-fade-up hover:-translate-y-1 transition-all duration-300    hover:border-[#C9A84C]/20 hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)]"
     >
       <p className="text-white text-[0.855rem] font-semibold mb-[0.55rem]">
         {task.title}
