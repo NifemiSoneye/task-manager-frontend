@@ -15,15 +15,15 @@ const SingleTask = ({ task, onSelect }: SingleTaskProps) => {
     transform,
     transition,
     isDragging,
-  } = useSortable({ id: task.id });
+  } = useSortable({ id: task.id }); //drag and drop
 
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
     opacity: isDragging ? 0.4 : 1,
-  };
+  }; //drag and drop
   return (
-    <div
+    <div //drag and drop
       ref={setNodeRef}
       style={style}
       {...attributes}

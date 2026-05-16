@@ -10,18 +10,28 @@ const initialState = boardsAdapter.getInitialState();
 export const boardsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllBoards: builder.query({
-      query: () => ({
-        url: `/boards`,
+      query: (page: number = 1) => ({
+        url: `/boards?page=${page}&limit=6`,
         validateStatus: (response, result) => {
           return response.status === 200 && !result.isError;
         },
       }),
-      transformResponse: (responseData) => {
-        const loadedBoards = responseData.map((board: Board) => {
+      transformResponse: (responseData: {
+        boards: Board[];
+        totalBoards: number;
+        totalPages: number;
+        currentPage: number;
+      }) => {
+        const loadedBoards = responseData.boards.map((board: Board) => {
           board.id = board._id;
           return board;
         });
-        return boardsAdapter.setAll(initialState, loadedBoards);
+        return {
+          ...boardsAdapter.setAll(initialState, loadedBoards),
+          totalBoards: responseData.totalBoards,
+          totalPages: responseData.totalPages,
+          currentPage: responseData.currentPage,
+        };
       },
       providesTags: (result, error, arg) => {
         if (result?.ids) {
@@ -80,7 +90,7 @@ export const {
 
 // returns the query result object
 export const selectBoardsResult =
-  boardsApiSlice.endpoints.getAllBoards.select(undefined);
+  boardsApiSlice.endpoints.getAllBoards.select(1);
 
 // creates memoized selector
 const selectBoardsData = createSelector(
