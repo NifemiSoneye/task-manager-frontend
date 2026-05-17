@@ -28,6 +28,9 @@ const Register = () => {
   const validEmail = EMAIL_REGEX.test(email);
   const validUsername = USERNAME_REGEX.test(username);
   const validPassword = PASSWORD_REGEX.test(password);
+  const [userFocus, setUserFocus] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
+  const [passwordFocus, setPasswordFocus] = useState(false);
   const navigate = useNavigate();
   const passwordsMatch = password === confirmPassword;
   let canSubmit;
@@ -192,7 +195,35 @@ const Register = () => {
               }`}
               value={username}
               onChange={handleUserInput}
+              onFocus={() => setUserFocus(true)}
+              onBlur={() => setUserFocus(false)}
             />
+            {userFocus && username.length > 0 && !validUsername && (
+              <div className="bg-[#1E3160] border border-[#C9A84C26] rounded-md p-3 mt-2 text-[0.65rem] text-[#8A93A8] space-y-1">
+                <p className="text-[#C9A84C] font-semibold mb-1">
+                  Username requirements:
+                </p>
+                <p
+                  className={
+                    USERNAME_REGEX.test(username) ? "text-green-400" : ""
+                  }
+                >
+                  ✓ 3 to 20 characters
+                </p>
+                <p
+                  className={/^[a-zA-Z]/.test(username) ? "text-green-400" : ""}
+                >
+                  ✓ Must begin with a letter
+                </p>
+                <p
+                  className={
+                    /^[a-zA-Z0-9_-]+$/.test(username) ? "text-green-400" : ""
+                  }
+                >
+                  ✓ Letters, numbers, underscores, hyphens only
+                </p>
+              </div>
+            )}
             <div className="flex justify-between mt-5">
               <Label htmlFor="email" className="text-white">
                 Email address
@@ -221,6 +252,8 @@ const Register = () => {
               }`}
               value={email}
               onChange={handleEmailInput}
+              onFocus={() => setEmailFocus(true)}
+              onBlur={() => setEmailFocus(false)}
             />
             <div className="flex justify-between mt-5">
               <Label htmlFor="password" className="text-white ">
@@ -250,7 +283,34 @@ const Register = () => {
                 }`}
                 value={password}
                 onChange={handlePwdInput}
+                onFocus={() => setPasswordFocus(true)}
+                onBlur={() => setPasswordFocus(false)}
               />
+              {passwordFocus && password.length > 0 && !validPassword && (
+                <div className="bg-[#1E3160] border border-[#C9A84C26] rounded-md p-3 mt-2 text-[0.65rem] text-[#8A93A8] space-y-1">
+                  <p className="text-[#C9A84C] font-semibold mb-1">
+                    Password requirements:
+                  </p>
+                  <p className={password.length >= 8 ? "text-green-400" : ""}>
+                    ✓ 8 to 24 characters
+                  </p>
+                  <p
+                    className={
+                      /[A-Za-z]/.test(password) ? "text-green-400" : ""
+                    }
+                  >
+                    ✓ At least one letter
+                  </p>
+                  <p className={/[0-9]/.test(password) ? "text-green-400" : ""}>
+                    ✓ At least one number
+                  </p>
+                  <p
+                    className={/[!@#$%]/.test(password) ? "text-green-400" : ""}
+                  >
+                    ✓ Allowed special characters: ! @ # $ %
+                  </p>
+                </div>
+              )}
               <button
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}
