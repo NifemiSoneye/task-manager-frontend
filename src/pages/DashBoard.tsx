@@ -12,8 +12,11 @@ import { selectSearch } from "@/features/ui/searchSlice";
 import SearchBar from "@/components/common/SearchBar";
 import DashNav from "@/components/common/DashNav";
 import { useToast } from "@/hooks/use-toast";
+import { useSearchParams } from "react-router-dom";
 const DashBoard = () => {
   const [createBoard, { isLoading: isBoardLoading }] = useCreateBoardMutation();
+  const [searchParams] = useSearchParams();
+  const isFavourites = searchParams.get("view") === "favourites";
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [boardName, setBoardName] = useState<string>("");
   const [errMsg, setErrMsg] = useState("");
@@ -29,6 +32,7 @@ const DashBoard = () => {
   const { data, isLoading } = useGetAllBoardsQuery({
     page,
     search: debouncedSearch,
+    favourite: isFavourites,
   }); //to ensure same timing for boarch changing
   const boards = data?.ids.map((id) => data.entities[id]) ?? [];
 
@@ -48,6 +52,9 @@ const DashBoard = () => {
   useEffect(() => {
     setErrMsg("");
   }, [boardName]);
+  useEffect(() => {
+    setPage(1);
+  }, [isFavourites]);
   const handleCreate = async (boardName: string) => {
     try {
       const response = await createBoard({ title: boardName }).unwrap();
@@ -133,7 +140,7 @@ const DashBoard = () => {
         </section>
         <div className="flex justify-between items-center">
           <h2 className="text-white my-5 font-['Playfair_Display_Variable'] ">
-            All Boards
+            {isFavourites ? "Favourites" : "All Boards"}
           </h2>
           {data?.totalPages ? (
             <div className="items-center justify-center gap-4 hidden lg:flex">
@@ -173,7 +180,7 @@ const DashBoard = () => {
               No board found
             </p>
           ) : null}
-          {debouncedSearch.length === 0 ? (
+          {debouncedSearch.length === 0 && !isFavourites ? (
             <div className="bg-transparent border border-dashed hover:border-[#C9A84C] border-[#c9a84c40] rounded-md flex items-center justify-center  flex-col min-h-55 hover:bg-[#b1a27940]/20 group">
               <div className="bg-[#23252b] h-11 w-11 rounded-full flex items-center justify-center text-xl transition-transform duration-300 group-hover:scale-105">
                 <Button

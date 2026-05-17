@@ -3,6 +3,7 @@ export interface Board {
   _id: string;
   title: string;
   user: string;
+  favourite: boolean;
   createdAt?: string;
   updatedAt?: string;
 }

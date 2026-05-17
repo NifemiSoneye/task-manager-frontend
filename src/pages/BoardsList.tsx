@@ -121,6 +121,20 @@ const BoardsList = ({ board, index }: Props) => {
             {board.title}
           </p>
 
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              updateBoard({
+                id: board.id,
+                title: board.title,
+                favourite: !board.favourite,
+              });
+            }}
+            className="text-white/60 hover:text-[#C9A84C] transition-colors duration-200 lg:opacity-0 lg:group-hover:opacity-100 cursor-pointer shrink-0 mr-1"
+          >
+            {board.favourite ? "★" : "☆"}
+          </button>
+
           <DropdownMenu>
             <DropdownMenuTrigger
               className=" top-2 right-2 text-white/60 hover:text-white px-1 lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-200 cursor-pointer shrink-0  rounded-full bg-black/20 "

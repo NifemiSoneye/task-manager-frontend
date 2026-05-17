@@ -10,8 +10,16 @@ const initialState = boardsAdapter.getInitialState();
 export const boardsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getAllBoards: builder.query({
-      query: ({ page = 1, search = "" }: { page: number; search: string }) => ({
-        url: `/boards?page=${page}&limit=4&search=${search}`,
+      query: ({
+        page = 1,
+        search = "",
+        favourite = false,
+      }: {
+        page: number;
+        search: string;
+        favourite?: boolean;
+      }) => ({
+        url: `/boards?page=${page}&limit=4&search=${search}&favourite=${favourite}`,
         validateStatus: (response, result) => {
           return response.status === 200 && !result.isError;
         },
