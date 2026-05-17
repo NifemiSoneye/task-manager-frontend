@@ -1,6 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
 import { selectSearch, setSearch } from "@/features/ui/searchSlice";
-import { Input } from "../ui/input";
 import { DebouncedInput } from "../DebouncedInput";
 const SearchBar = () => {
   const search = useSelector(selectSearch);

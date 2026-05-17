@@ -1,8 +1,8 @@
 import { Button } from "../ui/button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
-import { useSelector, useDispatch } from "react-redux";
-import { selectSidebarOpen, toggleSidebar } from "@/features/ui/uiSlice";
+import { useDispatch } from "react-redux";
+import { toggleSidebar } from "@/features/ui/uiSlice";
 import useAuth from "@/hooks/useAuth";
 import SearchBar from "./SearchBar";
 import { useParams } from "react-router-dom";
@@ -11,7 +11,6 @@ import { useSendLogoutMutation } from "@/features/auth/authApiSlice";
 import { useNavigate } from "react-router-dom";
 import { LoaderCircle } from "lucide-react";
 const DashNav = () => {
-  const isOpen = useSelector(selectSidebarOpen);
   const { username } = useAuth();
   // dispatch actions
   const dispatch = useDispatch();

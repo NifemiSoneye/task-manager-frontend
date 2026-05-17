@@ -51,7 +51,7 @@ const SingleTask = ({ task, onSelect }: SingleTaskProps) => {
           }`}
         >
           <div
-            className={`w-1 h-1  rounded-[50%] ${
+            className={`w-1 h-1  rounded-[50%] animate-pulse ${
               task.priority === "high"
                 ? "bg-[#f35e5e]"
                 : task.priority === "medium"

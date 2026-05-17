@@ -6,7 +6,7 @@ const AppFeatures = () => {
         Everything you need, <br /> nothing you don't.
       </p>
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        <div className="bg-[#132040] p-6 rounded-md transform hover:-translate-y-1 transition-all duration-300  border-[1px] border-t-[3px] border-transparent hover:border-[#C9A84C]/20 hover:border-t-[#C9A84C] hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] ">
+        <div className="bg-[#132040] p-6 rounded-md transform hover:-translate-y-1 transition-all duration-300  border border-t-[3px] border-transparent hover:border-[#C9A84C]/20 hover:border-t-[#C9A84C] hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] ">
           <div className="bg-[#23252b] w-11 h-11 flex items-center justify-center rounded-lg mb-4">
             ⚡
           </div>
@@ -18,7 +18,7 @@ const AppFeatures = () => {
             your board stays in sync.
           </p>
         </div>
-        <div className="bg-[#132040] p-6 rounded-md transform hover:-translate-y-1 transition-all duration-300  border-[1px] border-t-[3px] border-transparent hover:border-[#C9A84C]/20 hover:border-t-[#C9A84C]  hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] ">
+        <div className="bg-[#132040] p-6 rounded-md transform hover:-translate-y-1 transition-all duration-300  border border-t-[3px] border-transparent hover:border-[#C9A84C]/20 hover:border-t-[#C9A84C]  hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] ">
           <div className="bg-[#23252b] w-11 h-11 flex items-center justify-center rounded-lg mb-4">
             🎯
           </div>
@@ -28,7 +28,7 @@ const AppFeatures = () => {
             your attention first.
           </p>
         </div>
-        <div className="bg-[#132040] p-6 rounded-md transform hover:-translate-y-1 transition-all duration-300  border-[1px] border-t-[3px] border-transparent hover:border-[#C9A84C]/20 hover:border-t-[#C9A84C]  hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)]  ">
+        <div className="bg-[#132040] p-6 rounded-md transform hover:-translate-y-1 transition-all duration-300  border border-t-[3px] border-transparent hover:border-[#C9A84C]/20 hover:border-t-[#C9A84C]  hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)]  ">
           <div className="bg-[#23252b] w-11 h-11 flex items-center justify-center rounded-lg mb-4">
             📁
           </div>
@@ -38,7 +38,7 @@ const AppFeatures = () => {
             contexts clean and separate.
           </p>
         </div>
-        <div className="bg-[#132040] p-6 rounded-md transform hover:-translate-y-1 transition-all duration-300  border-[1px] border-t-[3px] border-transparent hover:border-[#C9A84C]/20 hover:border-t-[#C9A84C] hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] ">
+        <div className="bg-[#132040] p-6 rounded-md transform hover:-translate-y-1 transition-all duration-300  border border-t-[3px] border-transparent hover:border-[#C9A84C]/20 hover:border-t-[#C9A84C] hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] ">
           <div className="bg-[#23252b] w-11 h-11 flex items-center justify-center rounded-lg mb-4">
             🖱️
           </div>
@@ -48,7 +48,7 @@ const AppFeatures = () => {
             updates automatically.
           </p>
         </div>
-        <div className="bg-[#132040] p-6 rounded-md transform hover:-translate-y-1 transition-all duration-300  border-[1px] border-t-[3px] border-transparent hover:border-[#C9A84C]/20 hover:border-t-[#C9A84C] hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] ">
+        <div className="bg-[#132040] p-6 rounded-md transform hover:-translate-y-1 transition-all duration-300  border border-t-[3px] border-transparent hover:border-[#C9A84C]/20 hover:border-t-[#C9A84C] hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] ">
           <div className="bg-[#23252b] w-11 h-11 flex items-center justify-center rounded-lg mb-4">
             📅
           </div>
@@ -58,7 +58,7 @@ const AppFeatures = () => {
             ahead of your schedule.
           </p>
         </div>
-        <div className="bg-[#132040] p-6 rounded-md transform hover:-translate-y-1 transition-all duration-300  border-[1px] border-t-[3px] border-transparent hover:border-[#C9A84C]/20 hover:border-t-[#C9A84C] hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] ">
+        <div className="bg-[#132040] p-6 rounded-md transform hover:-translate-y-1 transition-all duration-300  border border-t-[3px] border-transparent hover:border-[#C9A84C]/20 hover:border-t-[#C9A84C] hover:shadow-[0_8px_30px_rgba(0,0,0,0.6)] ">
           <div className="bg-[#23252b] w-11 h-11 flex items-center justify-center rounded-lg mb-4">
             🔒
           </div>

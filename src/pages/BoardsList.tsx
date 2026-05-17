@@ -65,7 +65,11 @@ const BoardsList = ({ board, index }: Props) => {
         description: response.message,
       });
     } catch (err) {
-      console.error("Failed to delete board:", err);
+      toast({
+        variant: "default",
+        title: "Success! 🎉",
+        description: "Failed to delete board",
+      });
     }
   };
   const handleUpdate = async () => {
@@ -130,14 +134,19 @@ const BoardsList = ({ board, index }: Props) => {
                 favourite: !board.favourite,
               });
             }}
-            className="text-white/60 hover:text-[#C9A84C] transition-colors duration-200 lg:opacity-0 lg:group-hover:opacity-100 cursor-pointer shrink-0 mr-1"
+            className={`transition-colors duration-200 cursor-pointer shrink-0 mr-1
+  ${
+    board.favourite
+      ? "text-[#C9A84C]" // always visible when favourited
+      : "text-white/60 hover:text-[#C9A84C] lg:opacity-0 lg:group-hover:opacity-100" // only on hover when not favourited
+  }`}
           >
             {board.favourite ? "★" : "☆"}
           </button>
 
           <DropdownMenu>
             <DropdownMenuTrigger
-              className=" top-2 right-2 text-white/60 hover:text-white px-1 lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-200 cursor-pointer shrink-0  rounded-full bg-black/20 "
+              className=" top-2 right-2 text-white/60 hover:text-white px-1 lg:opacity-0 lg:group-hover:opacity-100 lg:transition-opacity lg:duration-200 cursor-pointer shrink-0  "
               onClick={(e) => e.stopPropagation()}
             >
               ⋯

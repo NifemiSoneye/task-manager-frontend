@@ -13,7 +13,6 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { LoaderCircle } from "lucide-react";
 import { Eye, EyeOff } from "lucide-react";
-import { Toaster } from "@/components/ui/toaster";
 import { useToast } from "@/hooks/use-toast";
 const Login = () => {
   const thisYear = new Date().getFullYear();

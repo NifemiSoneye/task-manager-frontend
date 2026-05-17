@@ -143,7 +143,11 @@ const TaskView = ({ data, status }: TaskViewProps) => {
       });
       setSelectedTask(null);
     } catch (err) {
-      console.error("Failed to delete board:", err);
+      toast({
+        variant: "default",
+        title: "Success! 🎉",
+        description: "Failed to delete task",
+      });
     }
   };
   const handleClose = () => {

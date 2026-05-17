@@ -9,6 +9,7 @@ import { useGetAllBoardsQuery } from "@/features/boards/boardApiSlice";
 import useAuth from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 // read state
 
 const getInitials = (fullName: string): string => {
@@ -59,6 +60,8 @@ const SideBar = () => {
     dispatch(toggleSidebar());
   };
 
+  const [searchParams] = useSearchParams();
+  const isFavourites = searchParams.get("view") === "favourites";
   return (
     <>
       {/* overlay - mobile only, outside the aside */}
@@ -91,7 +94,7 @@ const SideBar = () => {
               <div
                 className={`flex items-center gap-3 text-[0.875rem] font-semibold cursor-pointer my-0.5 py-[0.6rem] px-3
                     ${
-                      id
+                      id || isFavourites
                         ? "flex items-center gap-2 hover:bg-background/10 rounded-md p-1 cursor-pointer "
                         : "bg-[#C9A84C1A] text-[#C9A84C] rounded-md p-1 cursor-pointer"
                     }`}
@@ -103,7 +106,18 @@ const SideBar = () => {
                 <div className="text-[1rem] w-5">▦</div>
                 <p>Dashboard</p>
               </div>
-              <div className="flex items-center gap-3 text-[0.875rem] font-semibold cursor-pointer mb-0.5 py-[0.6rem] px-3">
+              <div
+                className={`flex items-center gap-3 text-[0.875rem] font-semibold cursor-pointer mb-0.5 py-[0.6rem] px-3
+    ${
+      isFavourites
+        ? "bg-[#C9A84C1A] text-[#C9A84C] rounded-md p-1"
+        : "hover:bg-background/10 rounded-md p-1"
+    }`}
+                onClick={() => {
+                  navigate("/dashboard?view=favourites");
+                  closeSideBar();
+                }}
+              >
                 <div className="text-[1rem] w-5">★</div>
                 <p>Favourites</p>
               </div>

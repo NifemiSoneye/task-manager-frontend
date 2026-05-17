@@ -22,7 +22,6 @@ const PersistLogin = () => {
       // React 18 Strict Mode
 
       const verifyRefreshToken = async () => {
-        console.log("verifying refresh token");
         try {
           //const response =
           await refresh(undefined);
@@ -50,11 +49,9 @@ const PersistLogin = () => {
   let content;
   if (!persist) {
     // persist: no
-    console.log("no persist");
     content = <Outlet />;
   } else if (isLoading) {
     //persist: yes, token: no
-    console.log("loading");
     content = (
       <div className="fixed inset-0 z-50 bg-[#0B1628]">
         <div className="w-full h-dvh grid place-content-center">
@@ -66,12 +63,9 @@ const PersistLogin = () => {
     content = null;
   } else if (isSuccess && trueSuccess) {
     //persist: yes, token: yes
-    console.log("success");
     content = <Outlet />;
   } else if (token && isUninitialized) {
     //persist: yes, token: yes
-    console.log("token and uninit");
-    console.log(isUninitialized);
     content = <Outlet />;
   }
 

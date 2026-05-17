@@ -60,9 +60,6 @@ const Board = () => {
 
     const activeTask = data.entities[activeId];
     const overTask = data.entities[overId];
-
-    console.log("URL board id:", id);
-    console.log("task.board:", activeTask?.board);
     if (!activeTask) return;
 
     // over.id is a column id (status string) not a task id
@@ -100,7 +97,6 @@ const Board = () => {
       const oldIndex = columnIds.indexOf(activeId);
       const newIndex = columnIds.indexOf(overId);
       const reordered = arrayMove(columnIds, oldIndex, newIndex);
-      console.log("reordered:", reordered);
 
       reordered.forEach((taskId, index) => {
         updateTask({

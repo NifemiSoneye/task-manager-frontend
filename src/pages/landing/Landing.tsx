@@ -11,15 +11,12 @@ const Landing = () => {
       <Nav />
       <div className="max-w-7xl mx-auto lg:pt-[10vh] pt-[5vh]">
         <div className="lg:grid grid-cols-2 lg:gap-16 lg:items-center py-1 lg:pb-28 lg:pt-10 lg:px-20 px-4">
-          <section className=" py-2 lg:py-0 opacity-0 animate-fade-up delay-75">
-            <div
-              className="flex justify-evenly md:justify-around  
-            items-center text-[#C9A84C] p-2 md:p-1 border border-[rgb(93,80,49)] bg-[rgba(201,168,76,0.1)] max-w-[70%] my-5 md:mb-7 rounded-4xl text-[0.75rem] shadow-[0_0_40px_rgba(201,168,76,0.15)] md:max-w-[50%] md:mx-0"
-            >
-              <div className="w-2 h-2  rounded-[50%] bg-[#f59e0b] animate-pulse"></div>
-              <p className=" text-xs">REAL-TIME TASK MANAGEMENT</p>
+          <section className=" py-2 lg:py-0 opacity-0 animate-fade-up delay-75 md:max-w-150 lg:max-w-none lg:mx-0">
+            <div className="inline-flex items-center gap-3 text-[#C9A84C] px-3 py-1.5 border border-[rgb(93,80,49)] bg-[rgba(201,168,76,0.1)] my-5 md:mb-7 rounded-4xl text-[0.75rem] shadow-[0_0_40px_rgba(201,168,76,0.15)]">
+              <div className="w-2 h-2 shrink-0 rounded-[50%] bg-[#f59e0b] animate-pulse"></div>
+              <p className="text-xs">REAL-TIME TASK MANAGEMENT</p>
             </div>
-            <h1 className="text-[2rem]  pr-10 text-white font-['Playfair_Display_Variable'] font-semibold lg:text-[4vw] md:text-[3.5rem]   md:leading-[1.2]  md:tracking-[-0.01em] md:mb-6 md:font-bold hidden lg:block">
+            <h1 className="text-[2rem]  pr-10 text-white font-['Playfair_Display_Variable'] font-semibold lg:text-[4vw] md:text-[2.5rem]   md:leading-[1.2]  md:tracking-[-0.01em] md:mb-6 md:font-bold hidden lg:block">
               Work flows when tasks are <br />
               <span className="italic text-[#C9A84C] font-semibold">
                 organised.

@@ -2,9 +2,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "@/app/store";
 
-interface searchState {
-  search: "string";
-}
 const searchSlice = createSlice({
   name: "search",
   initialState: { search: "" },

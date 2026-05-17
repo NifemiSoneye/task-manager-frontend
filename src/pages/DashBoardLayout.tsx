@@ -1,7 +1,6 @@
 import { Outlet } from "react-router-dom";
 import DashNav from "@/components/common/DashNav";
 import SideBar from "./SideBar";
-import { Toaster } from "@/components/ui/toaster";
 
 const DashBoardLayout = () => {
   return (

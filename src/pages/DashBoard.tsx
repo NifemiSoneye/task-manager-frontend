@@ -10,7 +10,6 @@ import { useCreateBoardMutation } from "@/features/boards/boardApiSlice";
 import { LoaderCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { selectSearch } from "@/features/ui/searchSlice";
 import SearchBar from "@/components/common/SearchBar";
-import DashNav from "@/components/common/DashNav";
 import { useToast } from "@/hooks/use-toast";
 import { useSearchParams } from "react-router-dom";
 const DashBoard = () => {
@@ -78,15 +77,6 @@ const DashBoard = () => {
       errRef?.current?.focus();
     }
   };
-
-  console.log(
-    "totalPages:",
-    data?.totalPages,
-    "page:",
-    page,
-    "search:",
-    search,
-  );
 
   if (analyticsLoading || isLoading)
     return (
